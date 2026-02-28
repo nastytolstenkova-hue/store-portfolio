@@ -1,9 +1,9 @@
-import Baner from "./layouts/Baner";
+import AppRouter from "./router/AppRouter"
 
 export default function App(){
   return (
     <div>
-      <Baner/>
+      <AppRouter/>
       
     </div>
   )
