@@ -21,6 +21,13 @@ export const ProductsContext = createContext<IProductContext | undefined>(undefi
 export function ProductsContextProvider({children}:{children:ReactNode}){
   const [productsList, setProductsList] = useState([])
 
+  useEffect(()=> {
+    fetch('/products.json') 
+    .then(response => response.json())
+    .then(data => setProductsList(data))
+    .catch(error => console.error('Ошибка загрузки:', error));
+  }, [])
+
 
   return(
     <ProductsContext.Provider value={{productsList}}>
