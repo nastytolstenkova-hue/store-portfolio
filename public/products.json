@@ -1,0 +1,134 @@
+[
+  {
+    "id": 1,
+    "name": "Cylinder Desktop Lamp",
+    "category": "desktop",
+    "price": 120.50,
+    "material": "Wood, Metal",
+    "description": "A minimalist desk lamp featuring a light oak base. Perfect for a modern workspace.",
+    "image": "/image/productsPhoto/prod1.jpg",
+    "inStock": true,
+    "isNew": true
+  },
+  {
+    "id": 2,
+    "name": "Orb Ceiling Pendant",
+    "category": "ceiling",
+    "price": 550.00,
+    "material": "Glass, Brass",
+    "description": "Elegant spherical pendant light made of frosted glass with a brass finish.",
+    "image": "/image/productsPhoto/prod2.jpg",
+    "inStock": true,
+    "isNew": false
+  },
+  {
+    "id": 3,
+    "name": "Aura Floor Lamp",
+    "category": "floor",
+    "price": 350.00,
+    "material": "Metal",
+    "description": "Slim black floor lamp with an adjustable head, ideal for reading nooks.",
+    "image": "/image/productsPhoto/prod3.jpg",
+    "inStock": true,
+    "isNew": true
+  },
+  {
+    "id": 4,
+    "name": "Luna Wall Sconce",
+    "category": "wall",
+    "price": 180.00,
+    "material": "Ceramic",
+    "description": "Handcrafted ceramic wall light providing a soft, moon-like ambient glow.",
+    "image": "/image/productsPhoto/prod4.jpg",
+    "inStock": false,
+    "isNew": false
+  },
+  {
+    "id": 5,
+    "name": "Nordic Rattan Pendant",
+    "category": "ceiling",
+    "price": 210.00,
+    "material": "Rattan",
+    "description": "Natural rattan woven pendant that adds organic texture and warmth to any room.",
+    "image": "/image/productsPhoto/prod5.jpg",
+    "inStock": true,
+    "isNew": false
+  },
+  {
+    "id": 6,
+    "name": "Minimalist Spot Light",
+    "category": "ceiling",
+    "price": 85.00,
+    "material": "Aluminum",
+    "description": "Compact ceiling spotlight with a matte finish and directional lighting.",
+    "image": "/image/productsPhoto/prod6.jpg",
+    "inStock": true,
+    "isNew": false
+  },
+  {
+    "id": 7,
+    "name": "Concrete Edison Lamp",
+    "category": "desktop",
+    "price": 95.00,
+    "material": "Concrete, Glass",
+    "description": "Industrial style lamp with a raw concrete base and a classic Edison bulb.",
+    "image": "/image/productsPhoto/prod7.jpg",
+    "inStock": true,
+    "isNew": false
+  },
+  {
+    "id": 8,
+    "name": "Geometric Copper Chandelier",
+    "category": "ceiling",
+    "price": 890.00,
+    "material": "Copper",
+    "description": "Luxury multi-tier chandelier made of polished copper rings with LED glow.",
+    "image": "/image/productsPhoto/prod8.jpg",
+    "inStock": true,
+    "isNew": true
+  },
+  {
+    "id": 9,
+    "name": "Washi Paper Floor Lamp",
+    "category": "floor",
+    "price": 145.00,
+    "material": "Paper, Wood",
+    "description": "Japanese-inspired floor lamp featuring a Washi paper shade and wooden frame.",
+    "image": "/image/productsPhoto/prod9.jpg",
+    "inStock": true,
+    "isNew": false
+  },
+  {
+    "id": 10,
+    "name": "Marble Sphere Table Lamp",
+    "category": "desktop",
+    "price": 280.00,
+    "material": "Marble, Glass",
+    "description": "Solid marble base topped with a perfectly smooth frosted glass sphere.",
+    "image": "/image/productsPhoto/prod10.jpg",
+    "inStock": false,
+    "isNew": false
+  },
+  {
+    "id": 11,
+    "name": "Arc Reading Lamp",
+    "category": "floor",
+    "price": 420.00,
+    "material": "Chrome",
+    "description": "Classic curved arc lamp for the living room, finished in brushed chrome.",
+    "image": "/image/productsPhoto/prod11.jpg",
+    "inStock": true,
+    "isNew": false
+  },
+  {
+    "id": 12,
+    "name": "Smoked Glass Pendant",
+    "category": "ceiling",
+    "price": 310.00,
+    "material": "Smoked Glass",
+    "description": "Moody pendant light made of dark smoked glass with gold interior accents.",
+    "image": "/image/productsPhoto/prod12.jpg",
+    "inStock": true,
+    "isNew": true
+  }
+]
