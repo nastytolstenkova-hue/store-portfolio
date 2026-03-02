@@ -28,12 +28,12 @@ export default function OneProduct({product}:{product:IProduct}){
       
 
       
-      <div className="flex justify-between mx-2">
+      <div className="flex justify-between mx-4 my-3">
         <p>price:</p>
         <p>{product.price}</p>
       </div>
       
-      <button className="flex justify-center items-center mx-auto mb-2 uppercase border border-zinc-400 rounded-md w-4/5 whitespace-nowrap">add to cart</button>
+      <button className="flex justify-center items-center mx-auto mb-2 p-1 uppercase border border-zinc-700/30 bg-zinc-300/30 shadow-xs shadow-gray-300  rounded-xl w-4/5 cursor-pointer whitespace-nowrap hover:bg-zinc-800 hover:text-white hover:border-zinc-800 transition-colors duration-300 active:scale-95 ">add to cart</button>
     </div>
   )
 }
