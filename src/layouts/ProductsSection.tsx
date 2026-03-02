@@ -1,15 +1,9 @@
-import { useContext } from "react";
-import { ProductsContext } from "../store/ProductsContext";
+import UseProductContext from "../hooks/UseProductContext";
 import OneProduct from "../components/OneProduct";
 
 export default function ProductsSection(){
-  const context = useContext(ProductsContext);
-
-  if (!context){
-    throw new Error('useCart must be used within a CartProvider');
-  }
-
-  const {productsList} = context;
+  
+  const {productsList} = UseProductContext();
 
   return (
     <div className="m-5 ">

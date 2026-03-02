@@ -15,7 +15,7 @@ export default function OneProduct({product}:{product:IProduct}){
   return (
     <div className="flex flex-col border border-zinc-200 rounded-md">
       <div className="w-full aspect-3/4 overflow-hidden p-2">
-        <img src={product.image} className="w-full h-full  rounded-md object-cover transition-transform duration-500 hover:scale-105"/>
+        <img src={product.image} alt={product.name} className="w-full h-full  rounded-md object-cover transition-transform duration-500 hover:scale-105"/>
       </div>
       
       <div className="flex justify-center items-center min-h-[3.5rem] px-2 text-center">
