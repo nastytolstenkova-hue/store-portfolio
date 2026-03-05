@@ -6,7 +6,7 @@ import type { IProduct } from "../store/ProductsContext";
 
 
 export default function OneProduct({product}:{product:IProduct}){
-  const {addCartProduct} = UseProductContext()
+  const {addCartProduct, countCartProduct, countSummaryPrice} = UseProductContext()
 
   return (
     <div className="flex flex-col border border-zinc-200 rounded-md">
@@ -29,7 +29,7 @@ export default function OneProduct({product}:{product:IProduct}){
         <p>{product.price}</p>
       </div>
       
-      <button className="flex justify-center items-center mx-auto mb-2 p-1 uppercase border border-zinc-700/30 bg-zinc-300/30 shadow-xs shadow-gray-300  rounded-xl w-4/5 cursor-pointer whitespace-nowrap hover:bg-zinc-800 hover:text-white hover:border-zinc-800 transition-colors duration-300 active:scale-95 " onClick={()=>addCartProduct(product.id)}>add to cart</button>
+      <button className="flex justify-center items-center mx-auto mb-2 p-1 uppercase border border-zinc-700/30 bg-zinc-300/30 shadow-xs shadow-gray-300  rounded-xl w-4/5 cursor-pointer whitespace-nowrap hover:bg-zinc-800 hover:text-white hover:border-zinc-800 transition-colors duration-300 active:scale-95 " onClick={()=>{addCartProduct(product.id);countSummaryPrice(); countCartProduct()}}>add to cart</button>
     </div>
   )
 }
