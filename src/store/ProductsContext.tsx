@@ -20,8 +20,20 @@ export interface IProductContext {
 export const ProductsContext = createContext<IProductContext | undefined>(undefined)
 
 export function ProductsContextProvider({children}:{children:ReactNode}){
+  
   const [productsList, setProductsList] = useState([])
   const [cartProducts, setCartProducts] = useState([{
+    "id": 9,
+    "name": "Washi Paper Floor Lamp",
+    "category": "floor",
+    "price": 145.00,
+    "material": "Paper, Wood",
+    "description": "Japanese-inspired floor lamp featuring a Washi paper shade and wooden frame.",
+    "image": "/image/productsPhoto/prod9.jpg",
+    "inStock": true,
+    "isNew": false
+  },
+  {
     "id": 9,
     "name": "Washi Paper Floor Lamp",
     "category": "floor",
