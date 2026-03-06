@@ -20,11 +20,10 @@ export interface IProductContext {
   productsList: IProduct[];
   cartProducts: ICartProduct[];
   addCartProduct: (id:number) => void;
-  summProd: number;
+  summProd: number;   
   totalPrice: number;
-  countCartProduct: () => void;
-  countSummaryPrice: () => void;
-
+  plusProduct: (id:number) => void;
+  minusProduct: (id:number) => void;
 }
 
 
@@ -35,19 +34,28 @@ export function ProductsContextProvider({children}:{children:ReactNode}){
   
   const [productsList, setProductsList] = useState<IProduct[]>([])
   const [cartProducts, setCartProducts] = useState<ICartProduct[]>([]);
-  const [summProd, setSummProd] = useState<number>(0);
-  const [totalPrice, setTotalPrice] = useState<number>(0);
+  
 
-  const countCartProduct = () => {
-    const countProd = cartProducts.reduce((acc, prod) => {
-    return acc + prod.count}, 0)
-    setSummProd(countProd);
-  };
+  const summProd = cartProducts.reduce((acc, prod) => acc + prod.count, 0);
+  
+  const totalPrice = cartProducts.reduce((acc, prod) => acc + (prod.count * prod.price), 0);
 
-  const countSummaryPrice = () => {
-    const countProd = cartProducts.reduce((acc, prod) => {
-    return acc + prod.count * prod.price}, 0)
-    setTotalPrice(countProd);
+  const plusProduct = (id: number) => {
+    setCartProducts((prevCart) =>  prevCart.map(item =>
+        item.id === id 
+          ? { ...item, count: item.count + 1 } 
+          : item
+      )
+    )
+  }
+
+  const minusProduct = (id: number) => {
+    setCartProducts((prevCart) =>  prevCart.map(item =>
+        item.id === id 
+          ? { ...item, count: item.count - 1 } 
+          : item
+      )
+    )
   }
 
   const addCartProduct = (id: number) => {
@@ -57,11 +65,14 @@ export function ProductsContextProvider({children}:{children:ReactNode}){
 
     if (existingProduct) {
       
+      
       return prevCart.map(item =>
         item.id === id 
           ? { ...item, count: item.count + 1 } 
           : item
       );
+    
+  
     }
 
     
@@ -85,7 +96,7 @@ export function ProductsContextProvider({children}:{children:ReactNode}){
 
 
   return(
-    <ProductsContext.Provider value={{productsList, cartProducts, addCartProduct, summProd, totalPrice, countCartProduct, countSummaryPrice}}>
+    <ProductsContext.Provider value={{productsList, cartProducts, addCartProduct, summProd, totalPrice, plusProduct, minusProduct}}>
       {children}
     </ProductsContext.Provider>
   )
