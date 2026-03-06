@@ -24,6 +24,7 @@ export interface IProductContext {
   totalPrice: number;
   plusProduct: (id:number) => void;
   minusProduct: (id:number) => void;
+  removeProduct: (id:number) => void;
 }
 
 
@@ -50,12 +51,30 @@ export function ProductsContextProvider({children}:{children:ReactNode}){
   }
 
   const minusProduct = (id: number) => {
-    setCartProducts((prevCart) =>  prevCart.map(item =>
-        item.id === id 
-          ? { ...item, count: item.count - 1 } 
-          : item
-      )
+    setCartProducts((prevCart) => {
+    const existingItem = prevCart.find(item => item.id === id);
+
+    
+    if (!existingItem) return prevCart;
+
+    
+    if (existingItem.count === 1) {
+      return prevCart.filter(item => item.id !== id);
+    }
+
+   
+    return prevCart.map(item =>
+      item.id === id ? { ...item, count: item.count - 1 } : item
+    );
+  });
+};
+
+  const removeProduct = (id: number) => {
+    setCartProducts((prevCart) => 
+    prevCart.filter(item =>
+      item.id !== id
     )
+  )
   }
 
   const addCartProduct = (id: number) => {
@@ -96,7 +115,7 @@ export function ProductsContextProvider({children}:{children:ReactNode}){
 
 
   return(
-    <ProductsContext.Provider value={{productsList, cartProducts, addCartProduct, summProd, totalPrice, plusProduct, minusProduct}}>
+    <ProductsContext.Provider value={{productsList, cartProducts, addCartProduct, summProd, totalPrice, plusProduct, minusProduct, removeProduct}}>
       {children}
     </ProductsContext.Provider>
   )
