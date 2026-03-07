@@ -15,11 +15,16 @@ export default function OneCartProduct({product}:{product:ICartProduct}){
         <p className="mx-2">{product.material}</p>
         <div className="flex justify-between mx-2 mt-3 text-base ">
           <p>Price:</p>
+          
           <div className="flex border border-zinc-500 w-fit h-fit rounded-md">
-            <button className={`${activeBatton} ${buttonDes}`} onClick={()=>plusProduct(product.id)}>+</button>
-            <p className="flex justify-center items-center p-1 w-7 h-7">{product.count}</p>
             <button className={`${activeBatton} ${buttonDes}`} onClick={()=>minusProduct(product.id)}>-</button>
+          
+            <p className="flex justify-center items-center p-1 w-7 h-7">1</p>
+            <button className={`${activeBatton} ${buttonDes}`} onClick={()=>plusProduct(product.id)}>+</button>
           </div>
+            
+         
+          
         </div>
         <div className="flex justify-between mx-2 ">
           <p>${product.price}</p>
