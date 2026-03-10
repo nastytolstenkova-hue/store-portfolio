@@ -19,7 +19,7 @@ export default function ProductPage(){
   const activeBatton = ' hover:bg-zinc-500/40  transition-colors duration-300 active:scale-95'
 
   return (
-    <div className="grid grid-cols-[2fr_3fr] gap-5 mt-5 ml-5 font-sans">
+    <div className="grid grid-cols-[2fr_3fr] gap-5 mt-5 ml-5 font-sans cursor-default">
       <div ><img src={product.image} alt={product.name} className="rounded-xl "/></div>
       <div>
         <p className="bg-yellow-300/20 w-fit px-2 uppercase rounded-full text-base">{product.category} lights</p>

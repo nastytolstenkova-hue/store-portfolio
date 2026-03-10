@@ -19,7 +19,7 @@ export default function OneCartProduct({product}:{product:ICartProduct}){
           <div className="flex border border-zinc-500 w-fit h-fit rounded-md">
             <button className={`${activeBatton} ${buttonDes}`} onClick={()=>minusProduct(product.id)}>-</button>
           
-            <p className="flex justify-center items-center p-1 w-7 h-7">1</p>
+            <p className="flex justify-center items-center p-1 w-7 h-7">{product.count}</p>
             <button className={`${activeBatton} ${buttonDes}`} onClick={()=>plusProduct(product.id)}>+</button>
           </div>
             

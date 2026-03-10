@@ -34,7 +34,19 @@ export const ProductsContext = createContext<IProductContext | undefined>(undefi
 export function ProductsContextProvider({children}:{children:ReactNode}){
   
   const [productsList, setProductsList] = useState<IProduct[]>([])
-  const [cartProducts, setCartProducts] = useState<ICartProduct[]>([]);
+  const [cartProducts, setCartProducts] = useState<ICartProduct[]>(()=> {
+  try {
+    const saved = localStorage.getItem('cartProducts');
+    return saved ? (JSON.parse(saved) as ICartProduct[]) : [];
+  } catch (error) {
+    console.error("Error cart parsing:", error);
+    return [];
+  }
+});
+
+  useEffect(() => {
+    localStorage.setItem('cartProducts', JSON.stringify(cartProducts))
+  }, [cartProducts])
   
 
   const summProd = cartProducts.reduce((acc, prod) => acc + prod.count, 0);
