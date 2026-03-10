@@ -2,6 +2,8 @@ import UseProductContext from "../hooks/UseProductContext";
 
 import type { IProduct } from "../store/ProductsContext";
 
+import { Link } from "react-router-dom";
+
 
 
 
@@ -11,11 +13,20 @@ export default function OneProduct({product}:{product:IProduct}){
   return (
     <div className="flex flex-col border border-zinc-200 rounded-md">
       <div className="w-full aspect-3/4 overflow-hidden p-2">
-        <img src={product.image} alt={product.name} className="w-full h-full  rounded-md object-cover transition-transform duration-500 hover:scale-105"/>
+        <Link to={`/catalog/${product.id}`}>
+          <img src={product.image} alt={product.name} className="w-full h-full  rounded-md object-cover transition-transform duration-500 hover:scale-105"/>
+        </Link>
+        
       </div>
       
       <div className="flex justify-center items-center min-h-[3.5rem] px-2 text-center">
-        <h2 className="uppercase text-base font-mono  mx-auto tracking-tight line-clamp-2 leading-tight ">{product.name}</h2>
+        
+        <Link 
+        to={`/catalog/${product.id}`} 
+        className="block uppercase text-base font-mono  mx-auto max-w-[90%] tracking-tight line-clamp-2 leading-tight mt-3  hover:underline cursor-pointer"
+      >
+        {product.name}
+      </Link>
 
       </div>
       

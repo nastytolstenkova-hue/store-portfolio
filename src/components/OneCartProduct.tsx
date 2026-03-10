@@ -1,5 +1,6 @@
 import type { ICartProduct } from "../store/ProductsContext";
 import UseProductContext from "../hooks/UseProductContext";
+import { Link } from "react-router-dom";
 
 export default function OneCartProduct({product}:{product:ICartProduct}){
   const {plusProduct, minusProduct, removeProduct} = UseProductContext();
@@ -11,7 +12,13 @@ export default function OneCartProduct({product}:{product:ICartProduct}){
         <img src={product.image} alt={product.name} className="w-full h-full object-cover rounded-md bg-zinc-100"/>
       </div>
       <div >
-        <h2 className="mt-3 mx-2 text-lg tracking-tight whitespace-nowrap">{product.name}</h2>
+        
+        <Link 
+        to={`/catalog/${product.id}`} 
+        className="mt-3 mx-2 text-lg tracking-tight whitespace-nowrap hover:underline cursor-pointer"
+      >
+        {product.name}
+      </Link>
         <p className="mx-2">{product.material}</p>
         <div className="flex justify-between mx-2 mt-3 text-base ">
           <p>Price:</p>

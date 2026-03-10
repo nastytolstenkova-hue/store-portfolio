@@ -1,19 +1,20 @@
-const product = {
-    "id": 9,
-    "name": "Washi Paper Floor Lamp",
-    "category": "floor",
-    "price": 145.00,
-    "material": "Paper, Wood",
-    "description": "Japanese-inspired floor lamp featuring a Washi paper shade and wooden frame.",
-    "image": "/image/productsPhoto/prod9.jpg",
-    "inStock": true,
-    "isNew": false
-  }
+import { useParams } from "react-router-dom";
+import type { IProduct  } from "../store/ProductsContext";
+
 
 import UseProductContext from "../hooks/UseProductContext";
 
+
 export default function ProductPage(){
-  const {plusProduct, minusProduct, addCartProduct} = UseProductContext();
+  const { id } = useParams<{ id: string }>();
+  const {plusProduct, minusProduct, addCartProduct, productsList} = UseProductContext();
+
+  const product: IProduct | undefined = productsList.find((prod)=>
+  prod.id === Number(id))
+
+  if (!product){
+    return <div>Product isn't exist</div>
+  }
 
   const buttonDes = `flex justify-center items-center  p-1 w-7 h-7 bg-zinc-400/30 cursor-pointer `
   const activeBatton = ' hover:bg-zinc-500/40  transition-colors duration-300 active:scale-95'
