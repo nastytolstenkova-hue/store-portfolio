@@ -1,9 +1,9 @@
-import ProductPage from "./ProductPage"
+import ErrorPage from "./ErrorPage"
 
 export default function AccountPage(){
   return (
     <div>
-      <ProductPage/>
+      <ErrorPage/>
     </div>
   )
 }
