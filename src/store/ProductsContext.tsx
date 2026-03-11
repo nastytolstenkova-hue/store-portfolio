@@ -19,7 +19,7 @@ export interface ICartProduct extends IProduct {
 export interface IProductContext {
   productsList: IProduct[];
   cartProducts: ICartProduct[];
-  addCartProduct: (id:number) => void;
+  addCartProduct: (id:number, quantity?:number) => void;
   summProd: number;   
   totalPrice: number;
   plusProduct: (id:number) => void;
@@ -89,17 +89,19 @@ export function ProductsContextProvider({children}:{children:ReactNode}){
   )
   }
 
-  const addCartProduct = (id: number) => {
+  const addCartProduct = (id: number, quantity = 1) => {
   setCartProducts((prevCart) => {
     
     const existingProduct = prevCart.find(item => item.id === id);
+    
 
     if (existingProduct) {
+      const newQuantity = existingProduct.count + quantity
       
       
       return prevCart.map(item =>
         item.id === id 
-          ? { ...item, count: item.count + 1 } 
+          ? { ...item, count: newQuantity } 
           : item
       );
     
@@ -111,7 +113,7 @@ export function ProductsContextProvider({children}:{children:ReactNode}){
 
     if (productToAdd) {
       
-      return [...prevCart, { ...productToAdd, count: 1 }];
+      return [...prevCart, { ...productToAdd, count: quantity }];
     }
 
     return prevCart; 

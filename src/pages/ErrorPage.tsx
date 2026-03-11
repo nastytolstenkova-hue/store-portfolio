@@ -13,7 +13,7 @@ export default function ErrorPage(){
           Let’s find your way back to the catalog.
         </p>
         <Link 
-          to="/" 
+          to="/main" 
           className="px-10 py-4 bg-zinc-900 text-white uppercase text-sm tracking-widest rounded-full 
                      shadow-[0_0_25px_5px_rgba(255,180,0,0.4)] hover:shadow-[0_0_40px_10px_rgba(255,180,0,0.6)] 
                      transition-all duration-500 active:scale-95"
