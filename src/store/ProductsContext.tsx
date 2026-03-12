@@ -44,6 +44,7 @@ export function ProductsContextProvider({children}:{children:ReactNode}){
   }
 });
 
+
   useEffect(() => {
     localStorage.setItem('cartProducts', JSON.stringify(cartProducts))
   }, [cartProducts])

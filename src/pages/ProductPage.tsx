@@ -9,7 +9,7 @@ import UseProductContext from "../hooks/UseProductContext";
 export default function ProductPage(){
   const [quality, setQuality] = useState(1)
   const { id } = useParams<{ id: string }>();
-  const {plusProduct, minusProduct, addCartProduct, productsList } = UseProductContext();
+  const {addCartProduct, productsList } = UseProductContext();
 
   const product: IProduct | undefined = productsList.find((prod)=>
   prod.id === Number(id))
