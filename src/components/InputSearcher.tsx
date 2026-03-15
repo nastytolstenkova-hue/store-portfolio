@@ -1,6 +1,8 @@
-
+import UseProductContext from "../hooks/UseProductContext"
 
 export default function InputSearcher(){
+  const {setInputSearcher, inputSearcher} = UseProductContext();
+
   return (
     <div className="relative w-full max-w-md mx-3">
         
@@ -15,6 +17,8 @@ export default function InputSearcher(){
           type="text" 
           className="block w-full pl-10 pr-3 py-2 border border-gray-200 rounded-full bg-white/50 focus:outline-none focus:ring-2 focus:ring-gray-200 transition-all" 
           placeholder="Search products..." 
+          value={inputSearcher}
+          onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setInputSearcher(e.target.value)}
         />
       </div>
     

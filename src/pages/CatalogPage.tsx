@@ -8,12 +8,30 @@ interface ICatalogPage {
 }
 
 export default function CatalogPage(){
-  const {productsList} = UseProductContext();
+  const {productsList, inputSearcher} = UseProductContext();
   const [category, setCategory] = useState<string>('');
 
  
   
-  const filtered = category.trim().toLowerCase() === '-' || category === '' ?  productsList : (productsList.filter((prod)=>prod.category === category.trim().toLowerCase()))
+  const filtered = productsList.filter((prod) => {
+  
+  const isCategoryMatch = category.trim() === '-' || category === '' || prod.category.toLowerCase() === category.trim().toLowerCase();
+
+  let isSearchMatch = true;
+  
+  if (inputSearcher.trim().length > 2){
+    isSearchMatch = prod.name.toLowerCase().includes(inputSearcher.trim().toLowerCase());
+
+  } 
+  
+  
+
+  return isCategoryMatch && isSearchMatch;
+});
+
+if (filtered.length === 0){
+    return 'No matches for your request.'
+  }
 
 
 

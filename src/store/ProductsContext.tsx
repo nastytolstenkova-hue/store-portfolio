@@ -25,6 +25,8 @@ export interface IProductContext {
   plusProduct: (id:number) => void;
   minusProduct: (id:number) => void;
   removeProduct: (id:number) => void;
+  inputSearcher: string;
+  setInputSearcher: React.Dispatch<React.SetStateAction<string>>;
 }
 
 
@@ -34,6 +36,7 @@ export const ProductsContext = createContext<IProductContext | undefined>(undefi
 export function ProductsContextProvider({children}:{children:ReactNode}){
   
   const [productsList, setProductsList] = useState<IProduct[]>([])
+  const [inputSearcher, setInputSearcher] = useState<string>('');
   const [cartProducts, setCartProducts] = useState<ICartProduct[]>(()=> {
   try {
     const saved = localStorage.getItem('cartProducts');
@@ -130,7 +133,7 @@ export function ProductsContextProvider({children}:{children:ReactNode}){
 
 
   return(
-    <ProductsContext.Provider value={{productsList, cartProducts, addCartProduct, summProd, totalPrice, plusProduct, minusProduct, removeProduct}}>
+    <ProductsContext.Provider value={{productsList, cartProducts, addCartProduct, summProd, totalPrice, plusProduct, minusProduct, removeProduct, inputSearcher, setInputSearcher}}>
       {children}
     </ProductsContext.Provider>
   )
