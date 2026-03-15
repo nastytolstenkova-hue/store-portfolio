@@ -7,6 +7,10 @@ import CatalogPage from "../pages/CatalogPage";
 import ErrorPage from "../pages/ErrorPage";
 import TopLayout from "../layouts/TopLayout";
 import ProductPage from "../pages/ProductPage";
+import WishList from "../pages/account pages/WishList";
+import OrderHistory from "../pages/account pages/OrderHistory";
+import ProfileSettings from "../pages/account pages/ProfileSettings";
+import Adresses from "../pages/account pages/Adresses";
 
 export default function AppRouter(){
   const router = createBrowserRouter([{
@@ -17,7 +21,13 @@ export default function AppRouter(){
       {path:'/main', element:<MainPage/>},
       {path:'/catalog', element:<CatalogPage/>},
       {path:'/catalog/:id', element:<ProductPage/>},
-      {path:'/account', element:<AccountPage/>},
+      {path:'/account', element:<AccountPage/>, 
+        children: [
+          { path: 'wishlist', element: <WishList/> },
+          { path: 'orders', element: <OrderHistory/> },
+          { path: 'profile', element: <ProfileSettings/> },
+          { path: 'adresses', element: <Adresses/> },
+        ]},
       {path:'/cart', element:<CartPage/>},
     ]
 }])
