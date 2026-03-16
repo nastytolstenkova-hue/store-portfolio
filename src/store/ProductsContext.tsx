@@ -27,6 +27,8 @@ export interface IProductContext {
   removeProduct: (id:number) => void;
   inputSearcher: string;
   setInputSearcher: React.Dispatch<React.SetStateAction<string>>;
+  wishList: IProduct[];
+  setWishList: React.Dispatch<React.SetStateAction<IProduct[]>>;
 }
 
 
@@ -46,6 +48,39 @@ export function ProductsContextProvider({children}:{children:ReactNode}){
     return [];
   }
 });
+const [wishList, setWishList] = useState<IProduct[]>([{
+    "id": 10,
+    "name": "Marble Sphere Table Lamp",
+    "category": "desktop",
+    "price": 280.00,
+    "material": "Marble, Glass",
+    "description": "Solid marble base topped with a perfectly smooth frosted glass sphere.",
+    "image": "/image/productsPhoto/prod10.jpg",
+    "inStock": false,
+    "isNew": false
+  },
+  {
+    "id": 11,
+    "name": "Arc Reading Lamp",
+    "category": "floor",
+    "price": 420.00,
+    "material": "Chrome",
+    "description": "Classic curved arc lamp for the living room, finished in brushed chrome.",
+    "image": "/image/productsPhoto/prod11.jpg",
+    "inStock": true,
+    "isNew": false
+  },
+  {
+    "id": 12,
+    "name": "Smoked Glass Pendant",
+    "category": "ceiling",
+    "price": 310.00,
+    "material": "Smoked Glass",
+    "description": "Moody pendant light made of dark smoked glass with gold interior accents.",
+    "image": "/image/productsPhoto/prod12.jpg",
+    "inStock": true,
+    "isNew": true
+  }]);
 
 
   useEffect(() => {
@@ -133,7 +168,7 @@ export function ProductsContextProvider({children}:{children:ReactNode}){
 
 
   return(
-    <ProductsContext.Provider value={{productsList, cartProducts, addCartProduct, summProd, totalPrice, plusProduct, minusProduct, removeProduct, inputSearcher, setInputSearcher}}>
+    <ProductsContext.Provider value={{productsList, cartProducts, addCartProduct, summProd, totalPrice, plusProduct, minusProduct, removeProduct, inputSearcher, setInputSearcher, wishList, setWishList}}>
       {children}
     </ProductsContext.Provider>
   )
