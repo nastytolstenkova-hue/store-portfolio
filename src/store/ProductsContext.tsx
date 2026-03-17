@@ -29,6 +29,8 @@ export interface IProductContext {
   setInputSearcher: React.Dispatch<React.SetStateAction<string>>;
   wishList: IProduct[];
   setWishList: React.Dispatch<React.SetStateAction<IProduct[]>>;
+  addWishList: (id:number) => void;
+  removeWishList: (id:number) => void;
 }
 
 
@@ -48,44 +50,20 @@ export function ProductsContextProvider({children}:{children:ReactNode}){
     return [];
   }
 });
-const [wishList, setWishList] = useState<IProduct[]>([{
-    "id": 10,
-    "name": "Marble Sphere Table Lamp",
-    "category": "desktop",
-    "price": 280.00,
-    "material": "Marble, Glass",
-    "description": "Solid marble base topped with a perfectly smooth frosted glass sphere.",
-    "image": "/image/productsPhoto/prod10.jpg",
-    "inStock": false,
-    "isNew": false
-  },
-  {
-    "id": 11,
-    "name": "Arc Reading Lamp",
-    "category": "floor",
-    "price": 420.00,
-    "material": "Chrome",
-    "description": "Classic curved arc lamp for the living room, finished in brushed chrome.",
-    "image": "/image/productsPhoto/prod11.jpg",
-    "inStock": true,
-    "isNew": false
-  },
-  {
-    "id": 12,
-    "name": "Smoked Glass Pendant",
-    "category": "ceiling",
-    "price": 310.00,
-    "material": "Smoked Glass",
-    "description": "Moody pendant light made of dark smoked glass with gold interior accents.",
-    "image": "/image/productsPhoto/prod12.jpg",
-    "inStock": true,
-    "isNew": true
-  }]);
-
+const [wishList, setWishList] = useState<IProduct[]>(()=> {
+  try {
+    const saved = localStorage.getItem('wishList');
+    return saved ? (JSON.parse(saved) as IProduct[]) : [];
+  } catch (error) {
+    console.error("Error wishlist parsing:", error);
+    return [];
+  }
+});
 
   useEffect(() => {
     localStorage.setItem('cartProducts', JSON.stringify(cartProducts))
-  }, [cartProducts])
+    localStorage.setItem('wishList', JSON.stringify(wishList))
+  }, [cartProducts, wishList])
   
 
   const summProd = cartProducts.reduce((acc, prod) => acc + prod.count, 0);
@@ -128,6 +106,14 @@ const [wishList, setWishList] = useState<IProduct[]>([{
   )
   }
 
+  const removeWishList = (id: number) => {
+    setWishList((prevList) => 
+    prevList.filter(item =>
+      item.id !== id
+    )
+  )
+  }
+
   const addCartProduct = (id: number, quantity = 1) => {
   setCartProducts((prevCart) => {
     
@@ -146,7 +132,7 @@ const [wishList, setWishList] = useState<IProduct[]>([{
     
   
     }
-
+    
     
     const productToAdd = productsList.find(prod => prod.id === id);
 
@@ -159,6 +145,29 @@ const [wishList, setWishList] = useState<IProduct[]>([{
   });
 };
 
+const addWishList = (id: number) => {
+  setWishList((prevList) => {
+    
+    const existingProduct = prevList.find(item => item.id === id);
+    
+
+    if (existingProduct) {
+      return prevList
+    }
+
+    
+    
+    const productToAdd = productsList.find(prod => prod.id === id);
+
+    if (productToAdd) {
+      
+      return [...prevList, { ...productToAdd}];
+    }
+
+    return prevList; 
+  });
+};
+
   useEffect(()=> {
     fetch('/products.json') 
     .then(response => response.json())
@@ -168,7 +177,7 @@ const [wishList, setWishList] = useState<IProduct[]>([{
 
 
   return(
-    <ProductsContext.Provider value={{productsList, cartProducts, addCartProduct, summProd, totalPrice, plusProduct, minusProduct, removeProduct, inputSearcher, setInputSearcher, wishList, setWishList}}>
+    <ProductsContext.Provider value={{productsList, cartProducts, addCartProduct, summProd, totalPrice, plusProduct, minusProduct, removeProduct, inputSearcher, setInputSearcher, wishList, setWishList, addWishList, removeWishList}}>
       {children}
     </ProductsContext.Provider>
   )

@@ -3,7 +3,7 @@ import UseProductContext from "../hooks/UseProductContext";
 import { NavLink } from "react-router-dom";
 
 export default function OneWishListProd({product}:{product:IProduct}){
-  const {addCartProduct} = UseProductContext();
+  const {addCartProduct, removeWishList} = UseProductContext();
   
   
   return (
@@ -32,7 +32,7 @@ export default function OneWishListProd({product}:{product:IProduct}){
         </div>
         <div className="flex justify-between mx-2 ">
           <p>${product.price}</p>
-          <button className="underline text-base text-zinc-600 cursor-pointer hover:text-black  transition-colors duration-300 active:scale-95">Remove from wishlist</button>
+          <button className="underline text-base text-zinc-600 cursor-pointer hover:text-black  transition-colors duration-300 active:scale-95" onClick={()=>removeWishList(product.id)}>Remove from wishlist</button>
         </div>
       </div>
     </div>
