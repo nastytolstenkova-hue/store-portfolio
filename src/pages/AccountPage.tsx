@@ -1,37 +1,31 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, Outlet } from "react-router-dom";
 
-
-export default function AccountPage(){
+export default function AccountPage() {
   return (
-    <div className="">
-      <h2 className="flex justify-center text-3xl uppercase">my account</h2>
-      
-      <div className="flex flex-col ml-5 pb-10 border border-zinc-200 px-8 rounded-2xl w-fit shadow-md h-[80vh] sticky top-5 justify-between">
-      <div className="flex flex-col justify-center items-center my-3">
-        <p>Welcome,</p>
-        <p>User Name</p>
-        <p>user@gmail.com</p>
-      </div>
-      <div className="flex flex-col gap-2">
-        <NavLink to='/account/wishlist'>Wish List</NavLink>
-        <NavLink to='/account/orders'>Your orders</NavLink>
-        <NavLink to='/account/profile'>Personal Info</NavLink>
-        <NavLink to='/account/adresses'>Adresses</NavLink>
+    <div className="w-full mt-5 cursor-default">
+      <div className="grid grid-cols-[1fr_2fr]">
+        <div className="flex flex-col ml-5 pb-10 border border-zinc-200 px-8 rounded-2xl w-fit shadow-md h-[80vh] sticky top-5 justify-between">
+          <div className="flex flex-col justify-center items-center my-3">
+            <p>Welcome,</p>
+            <p>User Name</p>
+            <p>user@gmail.com</p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <NavLink to="/account/wishlist">Wish List</NavLink>
+            <NavLink to="/account/orders">Your orders</NavLink>
+            <NavLink to="/account/profile">Personal Info</NavLink>
+            <NavLink to="/account/adresses">Adresses</NavLink>
+          </div>
 
+          <div>
+            <div className="border border-zinc-500"></div>
+            <button>Log Out</button>
+          </div>
+        </div>
+        <main className="px-5">
+          <Outlet />
+        </main>
       </div>
-      <div>
-        <div className="border border-zinc-500"></div>
-        <button>Log Out</button>
-      </div>
-      
-      
     </div>
-    <div>
-      
-      
-    </div>
-
-    </div>
-    
-  )
+  );
 }
