@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-a.active {
+.topNav a.active {
   text-decoration: underline;
-  
-  
 }

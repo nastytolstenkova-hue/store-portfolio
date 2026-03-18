@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 export default function OneProduct({ product }: { product: IProduct }) {
   const { addCartProduct, wishList, addWishList, removeWishList } = UseProductContext();
 
+  const isInWishList = wishList.find((prod)=>prod.id===product.id)
+
   const toggleWishList = (id: number) => {
     const exist = wishList.find((prod)=>prod.id===product.id);
     if (exist) {
@@ -48,7 +50,7 @@ export default function OneProduct({ product }: { product: IProduct }) {
         <p>{product.price}</p>
       </div>
 
-      <div className="grid grid-cols-[5fr_1fr]">
+      <div className="grid grid-cols-[5fr_1fr] justify-center items-center">
         <button
           className="flex justify-center items-center mx-auto mb-2 p-1 uppercase bg-zinc-300/30  shadow-[0_0_25px_5px_rgba(255,180,0,0.4)]  rounded-xl w-4/5 cursor-pointer whitespace-nowrap hover:bg-amber-400/50 hover:shadow-[0_0_40px_10px_rgba(255,180,0,0.6)] hover:text-white   duration-300 active:scale-95 transition-all "
           onClick={() => {
@@ -57,7 +59,7 @@ export default function OneProduct({ product }: { product: IProduct }) {
         >
           add to cart
         </button>
-        <button onClick={()=>toggleWishList(product.id)} className="text-3xl p-1 cursor-pointer active:scale-95">{wishList.find((prod)=>prod.id===product.id) ? '♥' : '♡'}</button>
+        <button onClick={()=>toggleWishList(product.id)} className={`text-3xl p-1 cursor-pointer active:scale-95    ${isInWishList ? 'text-amber-300' : 'text-zinc-700 '}`}>{isInWishList ? '♥' : '♡'}</button>
       </div>
     </div>
   );

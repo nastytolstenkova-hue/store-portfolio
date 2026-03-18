@@ -17,7 +17,7 @@ export default function MainNavigation(){
         <InputSearcher/>
       </div>
       
-      <div className="flex-1 flex justify-end mx-3">
+      <div className={`flex-1 flex justify-end mx-3 topNav`}>
         <NavLink to='/catalog' className={textWithIcon}><img src={catalog} className={`h-5 w-5 mr-2`}/>Catalog</NavLink>
         <NavLink to='/account' className={textWithIcon}><img src={user} className="h-5 w-5 mr-2"/>Account</NavLink>
         <NavLink to='/cart' className={textWithIcon}><img src={cart} className="h-5 w-5 mr-2"/><div className="relative">{summProd > 0 && (

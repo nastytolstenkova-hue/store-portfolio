@@ -1,6 +1,18 @@
 import { NavLink, Outlet } from "react-router-dom";
 
+import wishListImg from '../image/icons/wish-list.png'
+import logOutImg from '../image/icons/log-out.png'
+import personalInfoImg from '../image/icons/personal-info.png'
+import userOdersImg from '../image/icons/your-orders.png'
+import adressesImg from '../image/icons/adresses.png'
+
 export default function AccountPage() {
+  const linkdes = ( isActive: boolean ) =>
+    isActive
+      ? " py-1 px-2 w-full rounded-xl cursor-pointer whitespace-nowrap bg-amber-300/30  transition-colors duration-300 border-amber-500/30 shadow-sm shadow-amber-800/50"
+      : "hover:underline px-2 py-1"
+    
+      
   return (
     <div className="w-full mt-5 cursor-default">
       <div className="grid grid-cols-[1fr_2fr]">
@@ -10,16 +22,24 @@ export default function AccountPage() {
             <p>User Name</p>
             <p>user@gmail.com</p>
           </div>
-          <div className="flex flex-col gap-2">
-            <NavLink to="/account/wishlist">Wish List</NavLink>
-            <NavLink to="/account/orders">Your orders</NavLink>
-            <NavLink to="/account/profile">Personal Info</NavLink>
-            <NavLink to="/account/adresses">Adresses</NavLink>
+          <div className="grid grid-cols-[1fr_6fr] gap-2 items-center">
+            <img src={wishListImg} className={`h-5 w-5`}/>
+            <NavLink to="/account/wishlist" className={({isActive})=>linkdes(isActive)}>Wish List</NavLink>
+            <img src={userOdersImg} className={`h-5 w-5`}/>
+            <NavLink to="/account/orders" className={({isActive})=>linkdes(isActive)}>Your orders</NavLink>
+            <img src={personalInfoImg} className={`h-5 w-5`}/>
+            <NavLink to="/account/profile" className={({isActive})=>linkdes(isActive)}>Personal Info</NavLink>
+            <img src={adressesImg} className={`h-5 w-5`}/>
+            <NavLink to="/account/adresses" className={({isActive})=>linkdes(isActive)}>Adresses</NavLink>
           </div>
 
           <div>
             <div className="border border-zinc-500"></div>
-            <button>Log Out</button>
+            <div className="grid grid-cols-[1fr_2fr]">
+              <img src={adressesImg} className={`h-5 w-5`}/>
+              <button className=" ">Log Out</button>
+            </div>
+            
           </div>
         </div>
         <main className="px-5">
