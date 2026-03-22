@@ -12,6 +12,16 @@ export interface IProduct {
   isNew: boolean;
 }
 
+export interface UserInfo {
+  id: number;
+  userName: string;
+  email: string;
+  phone: string;
+  birthDate: string;
+  contactMethod: string;
+
+}
+
 export interface ICartProduct extends IProduct {
   count: number;
 }
@@ -31,6 +41,8 @@ export interface IProductContext {
   setWishList: React.Dispatch<React.SetStateAction<IProduct[]>>;
   addWishList: (id:number) => void;
   removeWishList: (id:number) => void;
+  userInfo: UserInfo;
+  setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>;
 }
 
 
@@ -38,7 +50,12 @@ export interface IProductContext {
 export const ProductsContext = createContext<IProductContext | undefined>(undefined)
 
 export function ProductsContextProvider({children}:{children:ReactNode}){
-  
+  const [userInfo, setUserInfo] = useState<UserInfo>({id: 0,
+  userName: "",
+  email: "",
+  phone: "",
+  birthDate: "",
+  contactMethod: "Email"});
   const [productsList, setProductsList] = useState<IProduct[]>([])
   const [inputSearcher, setInputSearcher] = useState<string>('');
   const [cartProducts, setCartProducts] = useState<ICartProduct[]>(()=> {
@@ -172,12 +189,20 @@ const addWishList = (id: number) => {
     fetch('/products.json') 
     .then(response => response.json())
     .then(data => setProductsList(data))
-    .catch(error => console.error('Ошибка загрузки:', error));
+    .catch(error => console.error('Loading error:', error));
+  }, [])
+
+  useEffect(()=> {
+    fetch('/user-data.json') 
+    .then(response => response.json())
+    .then(data => setUserInfo(data))
+    .catch(error => console.error('Loading error:', error));
   }, [])
 
 
+
   return(
-    <ProductsContext.Provider value={{productsList, cartProducts, addCartProduct, summProd, totalPrice, plusProduct, minusProduct, removeProduct, inputSearcher, setInputSearcher, wishList, setWishList, addWishList, removeWishList}}>
+    <ProductsContext.Provider value={{productsList, cartProducts, addCartProduct, summProd, totalPrice, plusProduct, minusProduct, removeProduct, inputSearcher, setInputSearcher, wishList, setWishList, addWishList, removeWishList, userInfo, setUserInfo}}>
       {children}
     </ProductsContext.Provider>
   )
