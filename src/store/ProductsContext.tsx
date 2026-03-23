@@ -30,7 +30,7 @@ export interface ICartProduct extends IProduct {
   count: number;
 }
 
-export interface IOrders {
+export interface IOrder {
   id: string;
   date: string;
   status: 'Delivered' | 'In Transit' | 'Processing'
@@ -55,8 +55,8 @@ export interface IProductContext {
   removeWishList: (id:number) => void;
   userInfo: UserInfo;
   setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>;
-  userOrders: IOrders[];
-  setUserOrders: React.Dispatch<React.SetStateAction<IOrders[]>>;
+  userOrders: IOrder[];
+  setUserOrders: React.Dispatch<React.SetStateAction<IOrder[]>>;
 }
 
 
@@ -64,7 +64,7 @@ export interface IProductContext {
 export const ProductsContext = createContext<IProductContext | undefined>(undefined)
 
 export function ProductsContextProvider({children}:{children:ReactNode}){
-  const [userOrders, setUserOrders] = useState<IOrders[]>([])
+  const [userOrders, setUserOrders] = useState<IOrder[]>([])
   const [userInfo, setUserInfo] = useState<UserInfo>({id: 0,
   userName: "",
   email: "",
