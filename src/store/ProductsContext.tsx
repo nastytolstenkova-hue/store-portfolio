@@ -12,6 +12,10 @@ export interface IProduct {
   isNew: boolean;
 }
 
+export interface IOrderItem extends Pick<IProduct, 'id' | 'name' | 'price' | 'image'> {
+  quantity: number; 
+}
+
 export interface UserInfo {
   id: number;
   userName: string;
@@ -24,6 +28,14 @@ export interface UserInfo {
 
 export interface ICartProduct extends IProduct {
   count: number;
+}
+
+export interface IOrders {
+  id: string;
+  date: string;
+  status: 'Delivered' | 'In Transit' | 'Processing'
+  totalPrice: number;
+  items: IOrderItem[];
 }
 
 export interface IProductContext {
@@ -43,6 +55,8 @@ export interface IProductContext {
   removeWishList: (id:number) => void;
   userInfo: UserInfo;
   setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>;
+  userOrders: IOrders[];
+  setUserOrders: React.Dispatch<React.SetStateAction<IOrders[]>>;
 }
 
 
@@ -50,6 +64,7 @@ export interface IProductContext {
 export const ProductsContext = createContext<IProductContext | undefined>(undefined)
 
 export function ProductsContextProvider({children}:{children:ReactNode}){
+  const [userOrders, setUserOrders] = useState<IOrders[]>([])
   const [userInfo, setUserInfo] = useState<UserInfo>({id: 0,
   userName: "",
   email: "",
@@ -81,6 +96,8 @@ const [wishList, setWishList] = useState<IProduct[]>(()=> {
     localStorage.setItem('cartProducts', JSON.stringify(cartProducts))
     localStorage.setItem('wishList', JSON.stringify(wishList))
   }, [cartProducts, wishList])
+
+ 
   
 
   const summProd = cartProducts.reduce((acc, prod) => acc + prod.count, 0);
@@ -189,20 +206,27 @@ const addWishList = (id: number) => {
     fetch('/products.json') 
     .then(response => response.json())
     .then(data => setProductsList(data))
-    .catch(error => console.error('Loading error:', error));
+    .catch(error => console.error('Loading product list error:', error));
   }, [])
 
   useEffect(()=> {
     fetch('/user-data.json') 
     .then(response => response.json())
     .then(data => setUserInfo(data))
-    .catch(error => console.error('Loading error:', error));
+    .catch(error => console.error('Loading user info error:', error));
+  }, [])
+
+   useEffect(()=> {
+    fetch('/orders-data.json') 
+    .then(response => response.json())
+    .then(data => setUserOrders(data))
+    .catch(error => console.error('Loading orders error:', error));
   }, [])
 
 
 
   return(
-    <ProductsContext.Provider value={{productsList, cartProducts, addCartProduct, summProd, totalPrice, plusProduct, minusProduct, removeProduct, inputSearcher, setInputSearcher, wishList, setWishList, addWishList, removeWishList, userInfo, setUserInfo}}>
+    <ProductsContext.Provider value={{productsList, cartProducts, addCartProduct, summProd, totalPrice, plusProduct, minusProduct, removeProduct, inputSearcher, setInputSearcher, wishList, setWishList, addWishList, removeWishList, userInfo, setUserInfo, userOrders, setUserOrders}}>
       {children}
     </ProductsContext.Provider>
   )
