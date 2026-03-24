@@ -47,6 +47,20 @@
         "image": "/image/productsPhoto/prod12.jpg",
         "quantity": 1,
         "price": 310.00
+      },
+      {
+        "productId": 1,
+        "name": "Cylinder Desktop Lamp",
+        "image": "/image/productsPhoto/prod1.jpg",
+        "quantity": 1,
+        "price": 120.50
+      },
+      {
+        "productId": 3,
+        "name": "Aura Floor Lamp",
+        "image": "/image/productsPhoto/prod3.jpg",
+        "quantity": 1,
+        "price": 350.00
       }
     ]
   },
