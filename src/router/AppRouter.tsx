@@ -11,6 +11,7 @@ import WishListPage from "../pages/account pages/WishListPage";
 import OrderHistory from "../pages/account pages/OrderHistory";
 import ProfileSettings from "../pages/account pages/ProfileSettings";
 import Adresses from "../pages/account pages/Adresses";
+import OneOrderDetails from "../components/OneOrderDetails";
 
 export default function AppRouter(){
   const router = createBrowserRouter([{
@@ -27,6 +28,7 @@ export default function AppRouter(){
           { path: 'orders', element: <OrderHistory/> },
           { path: 'profile', element: <ProfileSettings/> },
           { path: 'adresses', element: <Adresses/> },
+          { path: 'orderDetails/:id', element: <OneOrderDetails/> },
         ]},
       {path:'/cart', element:<CartPage/>},
     ]

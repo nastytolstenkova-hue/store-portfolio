@@ -1,4 +1,5 @@
 import { type IOrder } from "../store/ProductsContext";
+import { NavLink } from "react-router-dom";
 
 export default function OneOrder({ order }: { order: IOrder }) {
   const orderColor =
@@ -69,9 +70,9 @@ export default function OneOrder({ order }: { order: IOrder }) {
         </p>
       </ul>
       <div className="flex justify-between items-center py-1 mt-auto">
-        <button className="flex my-3 w-[60%] mb-2 p-1 uppercase border border-zinc-300 shadow-[0_0_10px_2px_rgba(255,180,0,0.5)] bg-yellow-500/20 rounded-xl cursor-pointer whitespace-nowrap hover:bg-yellow-500/30  transition-colors duration-300 active:scale-95 ">
+        <NavLink  to={`/account/orderDetails/${order.id}`} className="flex my-3 w-[60%] mb-2 p-1 uppercase border border-zinc-300 shadow-[0_0_10px_2px_rgba(255,180,0,0.5)] bg-yellow-500/20 rounded-xl cursor-pointer whitespace-nowrap hover:bg-yellow-500/30  transition-colors duration-300 active:scale-95 ">
           view details
-        </button>
+        </NavLink>
         <button className="flex underline text-sm text-zinc-900 cursor-pointer hover:text-black  transition-colors duration-300 active:scale-95">
           reorder
         </button>
