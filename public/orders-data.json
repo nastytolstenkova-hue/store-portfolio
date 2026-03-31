@@ -6,21 +6,21 @@
     "totalPrice": 470.50,
     "items": [
       {
-        "productId": 1,
+        "id": 1,
         "name": "Cylinder Desktop Lamp",
         "image": "/image/productsPhoto/prod1.jpg",
         "quantity": 1,
         "price": 120.50
       },
       {
-        "productId": 3,
+        "id": 3,
         "name": "Aura Floor Lamp",
         "image": "/image/productsPhoto/prod3.jpg",
         "quantity": 1,
         "price": 350.00
       },
       {
-        "productId": 3,
+        "id": 3,
         "name": "Aura Floor Lamp",
         "image": "/image/productsPhoto/prod3.jpg",
         "quantity": 1,
@@ -35,28 +35,28 @@
     "totalPrice": 520.00,
     "items": [
       {
-        "productId": 5,
+        "id": 5,
         "name": "Nordic Rattan Pendant",
         "image": "/image/productsPhoto/prod5.jpg",
         "quantity": 1,
         "price": 210.00
       },
       {
-        "productId": 12,
+        "id": 12,
         "name": "Smoked Glass Pendant",
         "image": "/image/productsPhoto/prod12.jpg",
         "quantity": 1,
         "price": 310.00
       },
       {
-        "productId": 1,
+        "id": 1,
         "name": "Cylinder Desktop Lamp",
         "image": "/image/productsPhoto/prod1.jpg",
         "quantity": 1,
         "price": 120.50
       },
       {
-        "productId": 3,
+        "id": 3,
         "name": "Aura Floor Lamp",
         "image": "/image/productsPhoto/prod3.jpg",
         "quantity": 1,
@@ -71,7 +71,7 @@
     "totalPrice": 890.00,
     "items": [
       {
-        "productId": 8,
+        "id": 8,
         "name": "Geometric Copper Chandelier",
         "image": "/image/productsPhoto/prod8.jpg",
         "quantity": 1,
@@ -86,14 +86,14 @@
     "totalPrice": 180.00,
     "items": [
       {
-        "productId": 7,
+        "id": 7,
         "name": "Concrete Edison Lamp",
         "image": "/image/productsPhoto/prod7.jpg",
         "quantity": 1,
         "price": 95.00
       },
       {
-        "productId": 6,
+        "id": 6,
         "name": "Minimalist Spot Light",
         "image": "/image/productsPhoto/prod6.jpg",
         "quantity": 1,

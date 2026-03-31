@@ -1,6 +1,6 @@
 import UseProductContext from "../hooks/UseProductContext";
-import OneCartProduct from "../components/OneCartProduct";
-import OrderSummary from "../components/OrderSummary";
+import OneCartProduct from "../components/cartComponents/OneCartProduct";
+import OrderSummary from "../components/cartComponents/OrderSummary";
 
 export default function CartPage() {
   const { cartProducts } = UseProductContext();

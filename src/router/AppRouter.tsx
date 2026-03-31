@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import MainPage from "../pages/MainPage";
 import AccountPage from "../pages/AccountPage";
@@ -11,31 +12,34 @@ import WishListPage from "../pages/account pages/WishListPage";
 import OrderHistory from "../pages/account pages/OrderHistory";
 import ProfileSettings from "../pages/account pages/ProfileSettings";
 import Adresses from "../pages/account pages/Adresses";
-import OneOrderDetails from "../components/OneOrderDetails";
+import OneOrderDetails from "../components/orserHistory/OneOrderDetails";
 
-export default function AppRouter(){
-  const router = createBrowserRouter([{
-    path:'/',
-    element: <TopLayout/>,
-    errorElement: <ErrorPage/>,
-    children: [
-      {path:'/main', element:<MainPage/>},
-      {path:'/catalog', element:<CatalogPage/>},
-      {path:'/catalog/:id', element:<ProductPage/>},
-      {path:'/account', element:<AccountPage/>, 
-        children: [
-          { path: 'wishlist', element: <WishListPage/> },
-          { path: 'orders', element: <OrderHistory/> },
-          { path: 'profile', element: <ProfileSettings/> },
-          { path: 'adresses', element: <Adresses/> },
-          { path: 'orderDetails/:id', element: <OneOrderDetails/> },
-        ]},
-      {path:'/cart', element:<CartPage/>},
-    ]
-}])
+export default function AppRouter() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <TopLayout />,
+      errorElement: <ErrorPage />,
+      children: [
+        { path: "/main", element: <MainPage /> },
+        { path: "/catalog", element: <CatalogPage /> },
+        { path: "/catalog/:id", element: <ProductPage /> },
+        {
+          path: "/account",
+          element: <AccountPage />,
+          children: [
+            { index: true, element: <Navigate to="profile" /> },
+            { path: "wishlist", element: <WishListPage /> },
+            { path: "orders", element: <OrderHistory /> },
+            { path: "profile", element: <ProfileSettings /> },
+            { path: "adresses", element: <Adresses /> },
+            { path: "orderDetails/:id", element: <OneOrderDetails /> },
+          ],
+        },
+        { path: "/cart", element: <CartPage /> },
+      ],
+    },
+  ]);
 
-  return (
-    <RouterProvider router={router}/>
-    
-  )
+  return <RouterProvider router={router} />;
 }
