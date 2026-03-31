@@ -1,10 +1,10 @@
 import { NavLink, Outlet } from "react-router-dom";
 
-import wishListImg from '../image/icons/wish-list.png'
-import logOutImg from '../image/icons/log-out.png'
-import personalInfoImg from '../image/icons/personal-info.png'
-import userOdersImg from '../image/icons/your-orders.png'
-import adressesImg from '../image/icons/adresses.png'
+import wishListImg from '../../image/icons/wish-list.png'
+import logOutImg from '../../image/icons/log-out.png'
+import personalInfoImg from '../../image/icons/personal-info.png'
+import userOdersImg from '../../image/icons/your-orders.png'
+import adressesImg from '../../image/icons/adresses.png'
 
 export default function AccountPage() {
   const linkdes = ( isActive: boolean ) =>

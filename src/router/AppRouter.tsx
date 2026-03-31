@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
 import MainPage from "../pages/MainPage";
-import AccountPage from "../pages/AccountPage";
+import AccountPage from "../pages/account pages/AccountPage";
 import CartPage from "../pages/CartPage";
 import CatalogPage from "../pages/CatalogPage";
 import ErrorPage from "../pages/ErrorPage";

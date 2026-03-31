@@ -1,7 +1,7 @@
 export default function ShippingAddress() {
   const inputDes = "w-full border rounded-md px-2 bg-white mb-2";
   return (
-    <div className="flex flex-col bg-amber-200/40 w-fit p-3 rounded-md border border-zinc-500/40">
+    <div className="flex flex-col bg-amber-200/40 w-fit p-3 rounded-md border border-zinc-500/40 mb-3">
       <h3 className="text-xl mb-5">Shipping Address</h3>
       <input className={`${inputDes}`} placeholder="Full Name" />
       <p>Street Address</p>
@@ -14,14 +14,14 @@ export default function ShippingAddress() {
         <p>Shipping Method</p>
         <div className="flex gap-2 items-center">
           <input type='checkbox' />
-          <p>
-            Standard Delivery <span>Free, 5-7 days</span>
+          <p className="text-sm whitespace-nowrap">
+            Standard Delivery <span className="text-xs">Free, 5-7 days</span>
           </p>
         </div>
         <div className="flex gap-2 items-center">
           <input type='checkbox'/>
-          <p>
-            Express Delivery <span>$25, 2-3 days</span>
+          <p className="text-sm whitespace-nowrap">
+            Express Delivery <span className="text-xs">$25, 2-3 days</span>
           </p>
         </div>
       </div>
