@@ -34,11 +34,15 @@ export default function PaymentMethodComp() {
           />
         </div>
       </div>
-      <div className="grid grid-cols-[5fr_1fr_5fr] items-center">
-        <div className="border-b mx-2"></div>
+      <div className="grid grid-cols-[5fr_1fr_5fr] items-center my-3">
+        <div className="border-b mx-2 "></div>
         <p>Or</p>
         <div className="border-b mx-2"></div>
       </div>
+      <button className="bg-amber-400 rounded-md font-bold text-xl font-sans cursor-pointer  hover:bg-amber-500 duration-300 active:scale-95 transition-all">
+        <span className="text-blue-950">Pay</span>
+        <span className="text-cyan-500">Pal</span>
+      </button>
     </div>
   );
 }

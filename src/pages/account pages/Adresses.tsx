@@ -1,16 +1,17 @@
 import ShippingAddress from "../../components/checkoutComp/ShippingAddress";
 import PaymentMethodComp from "../../components/checkoutComp/PaymentMethodComp";
+import OrderSummPay from "../../components/checkoutComp/OrderSummPay";
 
-export default function Adresses(){
+export default function Adresses() {
   return (
     <div className="grid grid-cols-2">
       <div className="">
-        <ShippingAddress/>
-        <PaymentMethodComp/>
-
+        <ShippingAddress />
+        <PaymentMethodComp />
       </div>
-      <div></div>
-      
+      <div>
+        <OrderSummPay />
+      </div>
     </div>
-  )
+  );
 }
