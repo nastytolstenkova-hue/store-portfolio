@@ -13,13 +13,13 @@ export default function ShippingAddress() {
       <div className="flex flex-col ">
         <p>Shipping Method</p>
         <div className="flex gap-2 items-center">
-          <input type='checkbox' />
+          <input type='radio' name="shipping" />
           <p className="text-sm whitespace-nowrap">
             Standard Delivery <span className="text-xs">Free, 5-7 days</span>
           </p>
         </div>
         <div className="flex gap-2 items-center">
-          <input type='checkbox'/>
+          <input type='radio' name="shipping"/>
           <p className="text-sm whitespace-nowrap">
             Express Delivery <span className="text-xs">$25, 2-3 days</span>
           </p>

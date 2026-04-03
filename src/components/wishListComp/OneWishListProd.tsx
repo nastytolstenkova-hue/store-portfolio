@@ -1,6 +1,7 @@
 import type { IProduct } from "../../store/ProductsContext";
 import UseProductContext from "../../hooks/UseProductContext";
 import { NavLink } from "react-router-dom";
+import Button from "../ui/Button";
 
 export default function OneWishListProd({ product }: { product: IProduct }) {
   const { addCartProduct, removeWishList } = UseProductContext();
@@ -29,12 +30,8 @@ export default function OneWishListProd({ product }: { product: IProduct }) {
           <p>Price:</p>
 
           <div className="">
-            <button
-              className="flex justify-center items-center mx-auto my-3 mb-2 p-1 uppercase border border-zinc-300 shadow-[0_0_10px_2px_rgba(255,180,0,0.5)] bg-zinc-300/30 rounded-xl cursor-pointer whitespace-nowrap hover:bg-yellow-200/20  transition-colors duration-300 active:scale-95 "
-              onClick={() => addCartProduct(product.id)}
-            >
-              Add to cart
-            </button>
+            <Button text='Add to cart' onClick={() => addCartProduct(product.id)} className="p-1.5"/>
+            
           </div>
         </div>
         <div className="flex justify-between mx-2 ">

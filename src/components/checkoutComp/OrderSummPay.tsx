@@ -1,6 +1,7 @@
 import UseProductContext from "../../hooks/UseProductContext";
 import OneItemSummary from "./OneItemSummary";
 import { NavLink } from "react-router-dom";
+import Button from "../ui/Button";
 
 export default function OrderSummPay() {
   const { cartProducts, summProd, totalPrice } = UseProductContext();
@@ -27,9 +28,7 @@ export default function OrderSummPay() {
         <p>Total</p>
         <p>${totalPrice}</p>
       </div>
-      <button className="flex justify-center items-center mx-auto my-2 p-1 uppercase bg-zinc-300/30  shadow-[0_0_25px_5px_rgba(255,180,0,0.4)]  rounded-xl w-4/5 cursor-pointer whitespace-nowrap hover:bg-amber-400/50 hover:shadow-[0_0_40px_10px_rgba(255,180,0,0.6)] hover:text-white   duration-300 active:scale-95 transition-all ">
-        pay
-      </button>
+      <Button text='pay' className="w-4/5"/>
       <NavLink
         to="/catalog"
         className="flex justify-center underline text-sm text-zinc-600 cursor-pointer hover:text-black  transition-colors duration-300 active:scale-95"

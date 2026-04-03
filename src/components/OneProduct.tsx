@@ -3,24 +3,23 @@ import UseProductContext from "../hooks/UseProductContext";
 import type { IProduct } from "../store/ProductsContext";
 
 import { Link } from "react-router-dom";
+import Button from "./ui/Button";
 
 export default function OneProduct({ product }: { product: IProduct }) {
-  const { addCartProduct, wishList, addWishList, removeWishList } = UseProductContext();
+  const { addCartProduct, wishList, addWishList, removeWishList } =
+    UseProductContext();
 
-  const isInWishList = wishList.find((prod)=>prod.id===product.id)
+  const isInWishList = wishList.find((prod) => prod.id === product.id);
 
   const toggleWishList = (id: number) => {
-    const exist = wishList.find((prod)=>prod.id===product.id);
+    const exist = wishList.find((prod) => prod.id === product.id);
     if (exist) {
       removeWishList(id);
-      return
+      return;
     }
     addWishList(id);
-    return
-
-  }
-
-
+    return;
+  };
 
   return (
     <div className="flex flex-col border border-zinc-200 rounded-md">
@@ -51,16 +50,22 @@ export default function OneProduct({ product }: { product: IProduct }) {
       </div>
 
       <div className="grid grid-cols-[5fr_1fr] justify-center items-center">
-        <button
-          className="flex justify-center items-center mx-auto mb-2 p-1 uppercase bg-zinc-300/30  shadow-[0_0_25px_5px_rgba(255,180,0,0.4)]  rounded-xl w-4/5 cursor-pointer whitespace-nowrap hover:bg-amber-400/50 hover:shadow-[0_0_40px_10px_rgba(255,180,0,0.6)] hover:text-white   duration-300 active:scale-95 transition-all "
+        <Button
+          text="add to cart"
           onClick={() => {
             addCartProduct(product.id);
           }}
+          className="mx-auto w-4/5"
+        />
+
+        <button
+          onClick={() => toggleWishList(product.id)}
+          className={`text-3xl p-1 cursor-pointer active:scale-95    ${isInWishList ? "text-amber-300" : "text-zinc-700 "}`}
         >
-          add to cart
+          {isInWishList ? "♥" : "♡"}
         </button>
-        <button onClick={()=>toggleWishList(product.id)} className={`text-3xl p-1 cursor-pointer active:scale-95    ${isInWishList ? 'text-amber-300' : 'text-zinc-700 '}`}>{isInWishList ? '♥' : '♡'}</button>
       </div>
+      
     </div>
   );
 }
