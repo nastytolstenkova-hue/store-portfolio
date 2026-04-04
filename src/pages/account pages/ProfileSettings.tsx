@@ -50,9 +50,13 @@ export default function ProfileSettings() {
   };
 
   const handleSave = () => {
-    setUserInfo(user);
-    setTemplateUsData(user);
-    setIsEdit(false);
+    if (isEdit) {
+      setUserInfo(user);
+      setTemplateUsData(user);
+      setIsEdit(false);
+      return;
+    }
+    return setIsEdit(true)
   };
 
   const handleChange = (
