@@ -3,12 +3,12 @@ import cart from "../image/icons/cartIcon.png";
 import catalog from "../image/icons/catalog.png";
 import user from "../image/icons/user.png";
 import InputSearcher from "../components/ui/InputSearcher";
-import UseProductContext from "../hooks/UseProductContext";
+import UseCartContext from "../hooks/UseCartContext";
 
 const textWithIcon = " flex m-3 items-center whitespace-nowrap mx-5";
 
 export default function MainNavigation() {
-  const { summProd } = UseProductContext();
+  const { summProd } = UseCartContext();
 
   return (
     <div className="flex justify-between mt-1 mx-2">
@@ -20,7 +20,7 @@ export default function MainNavigation() {
           Nordic Lights
         </NavLink>
       </div>
-      <div className="flex-[2] flex items-center justify-center ">
+      <div className="flex-2 flex items-center justify-center ">
         <InputSearcher />
       </div>
 

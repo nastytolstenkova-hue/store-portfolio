@@ -1,8 +1,8 @@
 import OneOrder from "../../components/orserHistory/OneOrder";
-import UseProductContext from "../../hooks/UseProductContext";
+import UseOrderContext from "../../hooks/UseOrderContext";
 
 export default function OrderHistory() {
-  const { userOrders } = UseProductContext();
+  const { userOrders } = UseOrderContext();
   return (
     <div className="border border-zinc-400/30 bg-amber-100/20 rounded-md py-2 px-3 cursor-default">
       <h2 className="text-xl m-2">Your Orders</h2>

@@ -36,7 +36,7 @@ export default function AccountPage() {
           <div>
             <div className="border border-zinc-500"></div>
             <div className="grid grid-cols-[1fr_2fr]">
-              <img src={adressesImg} className={`h-5 w-5`}/>
+              <img src={logOutImg} className={`h-5 w-5`}/>
               <button className=" ">Log Out</button>
             </div>
             

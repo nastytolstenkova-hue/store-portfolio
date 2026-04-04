@@ -1,11 +1,11 @@
-import UseProductContext from "../../hooks/UseProductContext";
-import type { IOrder } from "../../store/ProductsContext";
+import UseOrderContext from "../../hooks/UseOrderContext";
+import type { IOrder } from "../../store/OrderContext";
 import OneOrderProduct from "./OneOrderProduct";
 import { useParams } from "react-router-dom";
 
 export default function OneOrderDetails() {
   const { id } = useParams<{ id: string }>();
-  const { userOrders } = UseProductContext();
+  const { userOrders } = UseOrderContext();
   const currentOrder = userOrders.find((order: IOrder) => order.id === id);
   if (!currentOrder) {
     return <div>Order not found</div>;

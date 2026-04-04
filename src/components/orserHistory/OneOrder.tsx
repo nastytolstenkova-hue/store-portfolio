@@ -1,4 +1,4 @@
-import { type IOrder } from "../../store/ProductsContext";
+import type { IOrder } from "../../store/OrderContext";
 import { NavLink } from "react-router-dom";
 
 export default function OneOrder({ order }: { order: IOrder }) {

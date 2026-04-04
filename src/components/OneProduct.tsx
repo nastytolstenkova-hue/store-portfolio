@@ -1,4 +1,5 @@
-import UseProductContext from "../hooks/UseProductContext";
+import UseWishListContext from "../hooks/UseWishListContext";
+import UseCartContext from "../hooks/UseCartContext";
 
 import type { IProduct } from "../store/ProductsContext";
 
@@ -6,8 +7,8 @@ import { Link } from "react-router-dom";
 import Button from "./ui/Button";
 
 export default function OneProduct({ product }: { product: IProduct }) {
-  const { addCartProduct, wishList, addWishList, removeWishList } =
-    UseProductContext();
+  const { wishList, addWishList, removeWishList } = UseWishListContext();
+  const { addCartProduct } = UseCartContext();
 
   const isInWishList = wishList.find((prod) => prod.id === product.id);
 
@@ -33,7 +34,7 @@ export default function OneProduct({ product }: { product: IProduct }) {
         </Link>
       </div>
 
-      <div className="flex justify-center items-center min-h-[3.5rem] px-2 text-center">
+      <div className="flex justify-center items-center min-h-14 px-2 text-center">
         <Link
           to={`/catalog/${product.id}`}
           className="block uppercase text-base font-mono  mx-auto max-w-[90%] tracking-tight line-clamp-2 leading-tight mt-3  hover:underline cursor-pointer"
@@ -65,7 +66,6 @@ export default function OneProduct({ product }: { product: IProduct }) {
           {isInWishList ? "♥" : "♡"}
         </button>
       </div>
-      
     </div>
   );
 }

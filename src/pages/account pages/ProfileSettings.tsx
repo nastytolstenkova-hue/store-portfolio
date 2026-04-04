@@ -1,10 +1,10 @@
 import { useState } from "react";
-import UseProductContext from "../../hooks/UseProductContext";
-import { type UserInfo } from "../../store/ProductsContext";
+import UseUserContext from "../../hooks/UseUserContext";
+import type { UserInfo } from "../../store/UserContext";
 import Button from "../../components/ui/Button";
 
 export default function ProfileSettings() {
-  const { userInfo, setUserInfo } = UseProductContext();
+  const { userInfo, setUserInfo } = UseUserContext();
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [password, setPassword] = useState<string>("12345qwert.");
   const [inputPassw, setInputPassw] = useState({

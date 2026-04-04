@@ -1,10 +1,8 @@
-import type { IOrderItem } from "../../store/ProductsContext";
+import type { IOrderItem } from "../../store/OrderContext";
 import { NavLink } from "react-router-dom";
 
 export default function OneOrderProduct({ product }: { product: IOrderItem }) {
-  console.log(product.id);
-  console.log(product);
-
+  
   return (
     <div className="grid grid-cols-[1fr_3fr] h-full bg-amber-200/30 p-3 rounded-md my-2">
       <div className="w-30 aspect-4/5 overflow-hidden p-2">

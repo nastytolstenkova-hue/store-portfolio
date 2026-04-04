@@ -1,9 +1,9 @@
-import UseProductContext from "../hooks/UseProductContext";
+import UseCartContext from "../hooks/UseCartContext";
 import OneCartProduct from "../components/cartComponents/OneCartProduct";
 import OrderSummary from "../components/cartComponents/OrderSummary";
 
 export default function CartPage() {
-  const { cartProducts } = UseProductContext();
+  const { cartProducts } = UseCartContext();
   return (
     <div className="mx-7 cursor-default hover:cursor-default">
       <h1 className="flex justify-center font-mono  text-3xl uppercase my-5">
@@ -14,7 +14,7 @@ export default function CartPage() {
           {cartProducts.map((product) => (
             <div key={product.id}>
               <OneCartProduct product={product} />
-              <div className="h-[1px] mx-1 my-2 bg-zinc-300"></div>
+              <div className="h-px mx-1 my-2 bg-zinc-300"></div>
             </div>
           ))}
         </div>

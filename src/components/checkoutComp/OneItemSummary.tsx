@@ -1,4 +1,4 @@
-import { type ICartProduct } from "../../store/ProductsContext";
+import type { ICartProduct } from "../../store/CartContext";
 
 export default function OneItemSummary({ product }: { product: ICartProduct }) {
   return (

@@ -1,9 +1,9 @@
-import type { ICartProduct } from "../../store/ProductsContext";
-import UseProductContext from "../../hooks/UseProductContext";
+import type { ICartProduct } from "../../store/CartContext";
+import UseCartContext from "../../hooks/UseCartContext";
 import { Link } from "react-router-dom";
 
 export default function OneCartProduct({ product }: { product: ICartProduct }) {
-  const { plusProduct, minusProduct, removeProduct } = UseProductContext();
+  const { plusProduct, minusProduct, removeProduct } = UseCartContext();
   const buttonDes = `flex justify-center items-center  p-1 w-7 h-7 bg-zinc-400/40 cursor-pointer `;
   const activeBatton =
     " hover:bg-zinc-500/40  transition-colors duration-300 active:scale-95";
