@@ -7,15 +7,16 @@ import { useState } from "react";
 export default function PaymentMethodComp() {
   const [cardNumber, setCardNumber] = useState<string>("");
   const [isValid, setIsValid] = useState<boolean>(true);
-  const [typeCard, setTypeCard] = useState<string>('');
+  const [typeCard, setTypeCard] = useState<string>("");
+  const [cvv, setCvv] = useState<string>("");
+  const [isCvvValid, setIsCvvValid] = useState<boolean>(true);
   
 
   const getCardType = (number: string) => {
     const firstDigit = number[0];
     const firstTwoDigits = number.substring(0, 2);
 
-    if (firstDigit === "4") 
-      return "Visa";
+    if (firstDigit === "4") return "Visa";
     if (parseInt(firstTwoDigits) >= 51 && parseInt(firstTwoDigits) <= 55)
       return "Mastercard";
     if (firstTwoDigits === "34" || firstTwoDigits === "37")
@@ -26,20 +27,18 @@ export default function PaymentMethodComp() {
   const formatCardNumber = (value: string) => {
     const digits = value.replace(/\D/g, "");
     const currentType = getCardType(digits);
-    let limited
-    if (currentType === 'American Express'){
+    let limited;
+    if (currentType === "American Express") {
       limited = digits.substring(0, 15);
     } else {
       limited = digits.substring(0, 16);
     }
-    
+
     return limited.replace(/(\d{4})(?=\d)/g, "$1 ");
   };
 
   const validateLuhn = (cardNumber: string): boolean => {
     const digits = cardNumber.replace(/\s/g, "");
-    
-
 
     if (digits.length < 13) return false;
 
@@ -57,17 +56,36 @@ export default function PaymentMethodComp() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatCardNumber(e.target.value);
-    setTypeCard(getCardType(formatted))
+    setTypeCard(getCardType(formatted));
     setCardNumber(formatted);
 
-     if (formatted.replace(/\s/g, "").length === 15 && typeCard === 'American Express') {
+    if (
+      formatted.replace(/\s/g, "").length === 15 &&
+      typeCard === "American Express"
+    ) {
       setIsValid(validateLuhn(formatted));
-      return}
+      return;
+    }
 
     if (formatted.replace(/\s/g, "").length === 16) {
       setIsValid(validateLuhn(formatted));
     } else {
       setIsValid(true);
+    }
+  };
+
+  const handleCvvChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, "");
+
+    const requiredLength = typeCard === "American Express" ? 4 : 3;
+
+    const limitedValue = value.substring(0, requiredLength);
+    setCvv(limitedValue);
+
+    if (limitedValue.length === requiredLength) {
+      setIsCvvValid(true);
+    } else if (limitedValue.length > 0) {
+      setIsCvvValid(false);
     }
   };
 
@@ -105,8 +123,16 @@ export default function PaymentMethodComp() {
           <label className="text-sm whitespace-nowrap">CVV</label>
           <input
             type="text"
+            placeholder="000"
+            value={cvv}
+            onChange={handleCvvChange}
             className="w-full border rounded-md px-2 bg-white mb-2"
           />
+          {!isCvvValid && (
+            <span className="text-[10px] text-red-500 block">
+              Required: {typeCard === "American Express" ? "4" : "3"} digits
+            </span>
+          )}
         </div>
       </div>
       <div className="grid grid-cols-[5fr_1fr_5fr] items-center my-3">
