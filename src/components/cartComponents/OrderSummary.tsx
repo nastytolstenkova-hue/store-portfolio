@@ -1,5 +1,5 @@
 import UseCartContext from "../../hooks/UseCartContext";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Button from "../ui/Button";
 
 export default function OrderSummary() {
@@ -20,13 +20,13 @@ export default function OrderSummary() {
         <p>Total:</p>
         <p>${totalPrice + 10}</p>
       </div>
-      <Button text="Proceed to checkout" />
-      <Link
+      <NavLink to='/payment' className='flex justify-center items-center mx-auto my-2 p-1 uppercase bg-zinc-300/30  shadow-[0_0_25px_5px_rgba(255,180,0,0.4)]  rounded-xl cursor-pointer whitespace-nowrap hover:bg-amber-400/50 hover:shadow-[0_0_40px_10px_rgba(255,180,0,0.6)] hover:text-white   duration-300 active:scale-95 transition-all '>Proceed to checkout</NavLink>
+      <NavLink
         to="/catalog"
         className="flex justify-center underline text-sm text-zinc-600 cursor-pointer hover:text-black  transition-colors duration-300 active:scale-95"
       >
         continue shopping
-      </Link>
+      </NavLink>
     </div>
   );
 }

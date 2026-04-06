@@ -2,7 +2,75 @@ import amex from "../../image/paymentMethod/amex.png";
 import card from "../../image/paymentMethod/card.png";
 import visa from "../../image/paymentMethod/visa.png";
 
+import { useState } from "react";
+
 export default function PaymentMethodComp() {
+  const [cardNumber, setCardNumber] = useState<string>("");
+  const [isValid, setIsValid] = useState<boolean>(true);
+  const [typeCard, setTypeCard] = useState<string>('');
+  
+
+  const getCardType = (number: string) => {
+    const firstDigit = number[0];
+    const firstTwoDigits = number.substring(0, 2);
+
+    if (firstDigit === "4") 
+      return "Visa";
+    if (parseInt(firstTwoDigits) >= 51 && parseInt(firstTwoDigits) <= 55)
+      return "Mastercard";
+    if (firstTwoDigits === "34" || firstTwoDigits === "37")
+      return "American Express";
+    return " ";
+  };
+
+  const formatCardNumber = (value: string) => {
+    const digits = value.replace(/\D/g, "");
+    const currentType = getCardType(digits);
+    let limited
+    if (currentType === 'American Express'){
+      limited = digits.substring(0, 15);
+    } else {
+      limited = digits.substring(0, 16);
+    }
+    
+    return limited.replace(/(\d{4})(?=\d)/g, "$1 ");
+  };
+
+  const validateLuhn = (cardNumber: string): boolean => {
+    const digits = cardNumber.replace(/\s/g, "");
+    
+
+
+    if (digits.length < 13) return false;
+
+    let sum = 0;
+    for (let i = 0; i < digits.length; i++) {
+      let digit = parseInt(digits[i]);
+      if ((digits.length - i) % 2 === 0) {
+        digit *= 2;
+        if (digit > 9) digit -= 9;
+      }
+      sum += digit;
+    }
+    return sum % 10 === 0;
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formatted = formatCardNumber(e.target.value);
+    setTypeCard(getCardType(formatted))
+    setCardNumber(formatted);
+
+     if (formatted.replace(/\s/g, "").length === 15 && typeCard === 'American Express') {
+      setIsValid(validateLuhn(formatted));
+      return}
+
+    if (formatted.replace(/\s/g, "").length === 16) {
+      setIsValid(validateLuhn(formatted));
+    } else {
+      setIsValid(true);
+    }
+  };
+
   return (
     <div className="flex flex-col bg-amber-200/40 w-fit p-3 rounded-md border border-zinc-500/40">
       <h3 className="text-xl mb-1">Payment Method</h3>
@@ -13,10 +81,17 @@ export default function PaymentMethodComp() {
       </div>
       <div>
         <label className="text-sm whitespace-nowrap">Card Number</label>
+        <p>{typeCard}</p>
         <input
-          type=""
+          type="text"
+          placeholder="0000 0000 0000 0000"
+          value={cardNumber}
+          onChange={handleChange}
           className="w-full border rounded-md px-2 bg-white mb-2"
         />
+        {!isValid && (
+          <span className="text-xs text-red-500">Invalid card number</span>
+        )}
       </div>
       <div className="grid grid-cols-2 gap-3">
         <div>
@@ -29,7 +104,7 @@ export default function PaymentMethodComp() {
         <div>
           <label className="text-sm whitespace-nowrap">CVV</label>
           <input
-            type=""
+            type="text"
             className="w-full border rounded-md px-2 bg-white mb-2"
           />
         </div>

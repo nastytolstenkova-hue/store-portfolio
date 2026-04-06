@@ -13,6 +13,7 @@ import OrderHistory from "../pages/account pages/OrderHistory";
 import ProfileSettings from "../pages/account pages/ProfileSettings";
 import Adresses from "../pages/account pages/Adresses";
 import OneOrderDetails from "../components/orserHistory/OneOrderDetails";
+import PaymentPage from "../pages/PaymentPage";
 
 export default function AppRouter() {
   const router = createBrowserRouter([
@@ -24,6 +25,7 @@ export default function AppRouter() {
         { path: "/main", element: <MainPage /> },
         { path: "/catalog", element: <CatalogPage /> },
         { path: "/catalog/:id", element: <ProductPage /> },
+        { path: "/payment", element: <PaymentPage /> },
         {
           path: "/account",
           element: <AccountPage />,
@@ -34,6 +36,7 @@ export default function AppRouter() {
             { path: "profile", element: <ProfileSettings /> },
             { path: "adresses", element: <Adresses /> },
             { path: "orderDetails/:id", element: <OneOrderDetails /> },
+           
           ],
         },
         { path: "/cart", element: <CartPage /> },

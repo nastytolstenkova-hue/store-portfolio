@@ -1,7 +1,7 @@
 export default function ShippingAddress() {
   const inputDes = "w-full border rounded-md px-2 bg-white mb-2";
   return (
-    <div className="flex flex-col bg-amber-200/40 w-fit p-3 rounded-md border border-zinc-500/40 mb-3">
+    <div className="flex flex-col bg-amber-200/40 w-full p-3 rounded-md border border-zinc-500/40 mb-3">
       <h3 className="text-xl mb-5">Shipping Address</h3>
       <input className={`${inputDes}`} placeholder="Full Name" />
       <p>Street Address</p>
