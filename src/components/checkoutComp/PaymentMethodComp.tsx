@@ -2,15 +2,29 @@ import amex from "../../image/paymentMethod/amex.png";
 import card from "../../image/paymentMethod/card.png";
 import visa from "../../image/paymentMethod/visa.png";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function PaymentMethodComp() {
+export interface IPayMetComp {
+  isCardValid: (valid: boolean) => void;
+}
+
+export default function PaymentMethodComp({ isCardValid }: IPayMetComp) {
   const [cardNumber, setCardNumber] = useState<string>("");
   const [isValid, setIsValid] = useState<boolean>(true);
   const [typeCard, setTypeCard] = useState<string>("");
   const [cvv, setCvv] = useState<string>("");
   const [isCvvValid, setIsCvvValid] = useState<boolean>(true);
-  
+  const [expDate, setExpDate] = useState<string>("");
+  const [isExpDateValid, setIsExpDateValid] = useState<boolean>(true);
+
+  useEffect(() => {
+    const isFilled =
+      cardNumber.length >= 18 && cvv.length >= 3 && expDate.length === 5;
+
+    if (isValid && isCvvValid && isExpDateValid && isFilled) {
+      isCardValid(true);
+    } else isCardValid(false);
+  }, [cardNumber, cvv, expDate, isValid, isCvvValid, isExpDateValid]);
 
   const getCardType = (number: string) => {
     const firstDigit = number[0];
@@ -22,6 +36,42 @@ export default function PaymentMethodComp() {
     if (firstTwoDigits === "34" || firstTwoDigits === "37")
       return "American Express";
     return " ";
+  };
+
+  const formatExpDate = (value: string) => {
+    const digits = value.replace(/\D/g, "").substring(0, 4);
+    if (digits.length > 2) {
+      return `${digits.substring(0, 2)}/${digits.substring(2)}`;
+    }
+    return digits;
+  };
+
+  const validateExpDate = (value: string): boolean => {
+    if (value.length !== 5) return false;
+
+    const [month, year] = value.split("/").map((num) => parseInt(num));
+    const date = new Date();
+    const currentMonth = date.getMonth() + 1;
+    const currentYear = parseInt(date.getFullYear().toString().slice(-2));
+
+    if (month < 1 || month > 12) return false;
+    if (year < currentYear) return false;
+    if (year === currentYear && month < currentMonth) return false;
+
+    return true;
+  };
+
+  const handleExpDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formatted = formatExpDate(e.target.value);
+    setExpDate(formatted);
+
+    if (formatted.length === 0) {
+      setIsExpDateValid(true);
+    } else if (formatted.length === 5) {
+      setIsExpDateValid(validateExpDate(formatted));
+    } else {
+      setIsExpDateValid(true);
+    }
   };
 
   const formatCardNumber = (value: string) => {
@@ -56,18 +106,18 @@ export default function PaymentMethodComp() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatCardNumber(e.target.value);
-    setTypeCard(getCardType(formatted));
+    const currentType = getCardType(formatted);
+    setTypeCard(currentType);
     setCardNumber(formatted);
 
-    if (
-      formatted.replace(/\s/g, "").length === 15 &&
-      typeCard === "American Express"
-    ) {
+    const cleanLength = formatted.replace(/\s/g, "").length;
+
+    if (cleanLength === 15 && currentType === "American Express") {
       setIsValid(validateLuhn(formatted));
       return;
     }
 
-    if (formatted.replace(/\s/g, "").length === 16) {
+    if (cleanLength === 16) {
       setIsValid(validateLuhn(formatted));
     } else {
       setIsValid(true);
@@ -115,9 +165,16 @@ export default function PaymentMethodComp() {
         <div>
           <label className="text-sm whitespace-nowrap">Expiration Date</label>
           <input
+            value={expDate}
+            onChange={handleExpDateChange}
             placeholder="MM/YY"
             className="w-full border rounded-md px-2 bg-white mb-2"
           />
+          {!isExpDateValid && (
+            <span className="text-[10px] text-red-500 block">
+              Required: MM/YY
+            </span>
+          )}
         </div>
         <div>
           <label className="text-sm whitespace-nowrap">CVV</label>

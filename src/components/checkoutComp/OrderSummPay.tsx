@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom";
 import Button from "../ui/Button";
 
 export default function OrderSummPay() {
+ 
+
   const { cartProducts, summProd, totalPrice } = UseCartContext();
   return (
     <div className="flex flex-col bg-amber-200/40 w-fit p-3 rounded-md border border-zinc-500/40 ml-3">

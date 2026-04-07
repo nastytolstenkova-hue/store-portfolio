@@ -1,6 +1,5 @@
 import UseCartContext from "../../hooks/UseCartContext";
 import { NavLink } from "react-router-dom";
-import Button from "../ui/Button";
 
 export default function OrderSummary() {
   const { totalPrice, summProd } = UseCartContext();
