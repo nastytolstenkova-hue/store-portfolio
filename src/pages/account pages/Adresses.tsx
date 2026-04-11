@@ -1,10 +1,10 @@
 
-import PaymentPage from "../PaymentPage";
+import SuccesPayPage from "../SuccesPayPage";
 
 export default function Adresses() {
   return (
     <div>
-      <PaymentPage/>
+      <SuccesPayPage/>
     </div>
   );
 }

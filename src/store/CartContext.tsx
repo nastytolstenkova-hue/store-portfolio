@@ -30,11 +30,6 @@ export function CartContextProvider({ children }: { children: ReactNode }) {
     }
   });
 
-  const isCardValid = (data: boolean, cvv: boolean, number: boolean) => {
-    if (data && cvv && number) {
-      return true;
-    } else false;
-  };
 
   useEffect(() => {
     localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
