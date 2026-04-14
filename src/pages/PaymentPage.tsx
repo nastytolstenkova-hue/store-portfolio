@@ -4,6 +4,11 @@ import type { IUserAddress } from "../store/UserContext";
 import OrderSummPay from "../components/checkoutComp/OrderSummPay";
 import { useState } from "react";
 import UseUserContext from "../hooks/UseUserContext";
+import UseCartContext from "../hooks/UseCartContext";
+import UseOrderContext from "../hooks/UseOrderContext";
+import type { IOrder } from "../store/OrderContext";
+import { useNavigate } from "react-router-dom";
+
 
 export default function PaymentPage() {
   const [isCardReady, setIsCardReady] = useState<boolean>(false);
@@ -18,7 +23,11 @@ export default function PaymentPage() {
     shipMethod: "",
   });
 
+  const navigate = useNavigate();
+
   const { setUserAddresses } = UseUserContext();
+  const { setCartProducts, cartProducts, totalPrice } = UseCartContext();
+  const { sendOrder, setUserOrders } = UseOrderContext();
 
   const canOrder = isCardReady && isUserReady;
 
@@ -57,8 +66,31 @@ export default function PaymentPage() {
         postalCode: "",
         shipMethod: "",
       });
+
+      const orderId = `NL-${new Date().getFullYear()}-${Math.floor(Math.random() * 1000)
+          .toString()
+          .padStart(3, "0")}`
+
+      const newOrder: IOrder = {
+        id: orderId,
+        date: new Date().toISOString().split("T")[0],
+        status: "Processing",
+        totalPrice: totalPrice,
+        items: cartProducts.map((prod) => ({
+          id: prod.id,
+          name: prod.name,
+          image: prod.image,
+          price: prod.price,
+          quantity: prod.count,
+        })),
+      };
+
+      sendOrder(newOrder);
+      setUserOrders((prevVal)=>[ newOrder, ...prevVal])
+      setCartProducts([]);
       setIsCardReady(false);
       setIsUserReady(false);
+      navigate('/success', {state: {orderId : orderId}})
     }
   };
 
@@ -73,7 +105,7 @@ export default function PaymentPage() {
         <PaymentMethodComp isCardValid={setIsCardReady} />
       </div>
       <div>
-        <OrderSummPay payFunction={handlePayFunction}/>
+        <OrderSummPay payFunction={handlePayFunction} />
       </div>
     </div>
   );

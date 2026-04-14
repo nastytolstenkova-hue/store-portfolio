@@ -8,6 +8,7 @@ export interface ICartProduct extends IProduct {
 
 export interface ICartContext {
   cartProducts: ICartProduct[];
+  setCartProducts: React.Dispatch<React.SetStateAction<ICartProduct[]>>;
   addCartProduct: (id: number, quantity?: number) => void;
   summProd: number;
   totalPrice: number;
@@ -102,6 +103,7 @@ export function CartContextProvider({ children }: { children: ReactNode }) {
         plusProduct,
         minusProduct,
         removeProduct,
+        setCartProducts
       }}
     >
       {children}

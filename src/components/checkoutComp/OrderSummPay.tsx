@@ -8,7 +8,7 @@ export interface IOrderSummPay {
 }
 
 export default function OrderSummPay({ payFunction }: IOrderSummPay) {
-  const { cartProducts, summProd, totalPrice } = UseCartContext();
+  const { cartProducts, totalPrice } = UseCartContext();
   return (
     <div className="flex flex-col bg-amber-200/40 w-fit p-3 rounded-md border border-zinc-500/40 ml-3">
       <h3 className="text-xl mb-1">Order summary</h3>
