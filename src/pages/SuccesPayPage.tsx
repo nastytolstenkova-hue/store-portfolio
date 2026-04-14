@@ -8,9 +8,9 @@ export default function SuccesPayPage() {
   const state = location.state as { orderId: string } | null;
   const orderId = state?.orderId || "N/A";
   return (
-    <div className="flex mx-auto w-[90%] p-3 bg-amber-200/40 rounded-md border border-zinc-500/40">
+    <div className="flex justify-center items-center mx-auto w-[90%] p-3 bg-amber-200/40 rounded-md border border-zinc-500/40">
       <div className="flex flex-col justify-center items-center">
-        <img src={mark} alt="success" className="w-20 h-20 my-4" />
+        <img src={mark} alt="success" className="w-20 h-20 my-4 opacity-70" />
         <h3 className="text-2xl font-mono font-bold tracking-tight leading-tight">
           Thank you for your order!
         </h3>
