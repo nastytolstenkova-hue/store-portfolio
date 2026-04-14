@@ -11,7 +11,7 @@ import ProductPage from "../pages/ProductPage";
 import WishListPage from "../pages/account pages/WishListPage";
 import OrderHistory from "../pages/account pages/OrderHistory";
 import ProfileSettings from "../pages/account pages/ProfileSettings";
-import Adresses from "../pages/account pages/Adresses";
+import Adresses from "../pages/account pages/Addresses";
 import OneOrderDetails from "../components/orserHistory/OneOrderDetails";
 import SuccesPayPage from "../pages/SuccesPayPage";
 import PaymentPage from "../pages/PaymentPage";

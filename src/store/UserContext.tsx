@@ -37,7 +37,17 @@ export function UserContextProvider({ children }: { children: ReactNode }) {
     birthDate: "",
     contactMethod: "Email",
   });
-  const [userAddresses, setUserAddresses] = useState<IUserAddress[]>([]);
+  const [userAddresses, setUserAddresses] = useState<IUserAddress[]>([
+    {
+      fullName: "Nik Lack",
+      street: "Loyua",
+      houseNumber: "3",
+      apartment: "234",
+      city: "Madeira",
+      postalCode: "67-456",
+      shipMethod: "j",
+    },
+  ]);
 
   useEffect(() => {
     fetch("/user-data.json")

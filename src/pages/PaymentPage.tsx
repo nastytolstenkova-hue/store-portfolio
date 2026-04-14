@@ -56,7 +56,7 @@ export default function PaymentPage() {
 
   const handlePayFunction = () => {
     if (canOrder) {
-      setUserAddresses((prevVal) => [...prevVal, address]);
+      setUserAddresses((prevVal) => [address, ...prevVal]);
       setAdress({
         fullName: "",
         street: "",
