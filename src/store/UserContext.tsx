@@ -10,6 +10,7 @@ export interface UserInfo {
 }
 
 export interface IUserAddress {
+  id: string;
   fullName: string;
   street: string;
   houseNumber: string;
@@ -17,6 +18,7 @@ export interface IUserAddress {
   city: string;
   postalCode: string;
   shipMethod: string;
+  mainAddress: boolean;
 }
 
 export interface IUserContext {
@@ -24,6 +26,7 @@ export interface IUserContext {
   setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>;
   userAddresses: IUserAddress[];
   setUserAddresses: React.Dispatch<React.SetStateAction<IUserAddress[]>>;
+  handleDeleteAddress: (id:string) => void;
 }
 
 export const UserContext = createContext<IUserContext | undefined>(undefined);
@@ -37,17 +40,19 @@ export function UserContextProvider({ children }: { children: ReactNode }) {
     birthDate: "",
     contactMethod: "Email",
   });
-  const [userAddresses, setUserAddresses] = useState<IUserAddress[]>([
-    {
-      fullName: "Nik Lack",
-      street: "Loyua",
-      houseNumber: "3",
-      apartment: "234",
-      city: "Madeira",
-      postalCode: "67-456",
-      shipMethod: "j",
-    },
-  ]);
+  const [userAddresses, setUserAddresses] = useState<IUserAddress[]>(() => {
+    try {
+      const saved = localStorage.getItem("userAddresses");
+      return saved ? (JSON.parse(saved) as IUserAddress[]) : [];
+    } catch (error) {
+      console.error("Error adresses parsing:", error);
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem("userAddresses", JSON.stringify(userAddresses));
+  }, [userAddresses]);
 
   useEffect(() => {
     fetch("/user-data.json")
@@ -56,9 +61,15 @@ export function UserContextProvider({ children }: { children: ReactNode }) {
       .catch((error) => console.error("Loading user info error:", error));
   }, []);
 
+  const handleDeleteAddress = (id: string) => {
+    setUserAddresses((prevVal) =>
+      prevVal.filter((address) => address.id !== id),
+    );
+  };
+
   return (
     <UserContext.Provider
-      value={{ userInfo, setUserInfo, userAddresses, setUserAddresses }}
+      value={{ userInfo, setUserInfo, userAddresses, setUserAddresses, handleDeleteAddress }}
     >
       {children}
     </UserContext.Provider>

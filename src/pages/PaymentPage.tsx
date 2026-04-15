@@ -14,6 +14,7 @@ export default function PaymentPage() {
   const [isCardReady, setIsCardReady] = useState<boolean>(false);
   const [isUserReady, setIsUserReady] = useState<boolean>(false);
   const [address, setAdress] = useState<IUserAddress>({
+    id: '',
     fullName: "",
     street: "",
     houseNumber: "",
@@ -21,6 +22,7 @@ export default function PaymentPage() {
     city: "",
     postalCode: "",
     shipMethod: "",
+    mainAddress: false
   });
 
   const navigate = useNavigate();
@@ -29,7 +31,7 @@ export default function PaymentPage() {
   const { setCartProducts, cartProducts, totalPrice } = UseCartContext();
   const { sendOrder, setUserOrders } = UseOrderContext();
 
-  const canOrder = isCardReady && isUserReady;
+  const canOrder =  isCardReady && isUserReady;
 
   const getInfo = (
     fullName: string,
@@ -43,6 +45,7 @@ export default function PaymentPage() {
   ) => {
     if (isShippingAdressValid) {
       setAdress({
+        id: `${street} ${houseNumber}`,
         fullName: fullName,
         street: street,
         houseNumber: houseNumber,
@@ -50,6 +53,8 @@ export default function PaymentPage() {
         city: city,
         postalCode: postalCode,
         shipMethod: shipMethod,
+        mainAddress: false
+        
       });
     }
   };
@@ -58,6 +63,7 @@ export default function PaymentPage() {
     if (canOrder) {
       setUserAddresses((prevVal) => [address, ...prevVal]);
       setAdress({
+        id: '',
         fullName: "",
         street: "",
         houseNumber: "",
@@ -65,6 +71,7 @@ export default function PaymentPage() {
         city: "",
         postalCode: "",
         shipMethod: "",
+        mainAddress: false,
       });
 
       const orderId = `NL-${new Date().getFullYear()}-${Math.floor(Math.random() * 1000)
