@@ -31,7 +31,7 @@ export default function PaymentPage() {
   const { setCartProducts, cartProducts, totalPrice } = UseCartContext();
   const { sendOrder, setUserOrders } = UseOrderContext();
 
-  const canOrder =  isCardReady && isUserReady;
+  const canOrder =   isUserReady;
 
   const getInfo = (
     fullName: string,
@@ -45,7 +45,7 @@ export default function PaymentPage() {
   ) => {
     if (isShippingAdressValid) {
       setAdress({
-        id: `${street} ${houseNumber}`,
+        id: `${street} ${houseNumber} ${Date.now()}`,
         fullName: fullName,
         street: street,
         houseNumber: houseNumber,

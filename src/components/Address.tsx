@@ -1,10 +1,29 @@
 import type { IUserAddress } from "../store/UserContext";
 import UseUserContext from "../hooks/UseUserContext";
 
+
 export default function Address({ address }: { address: IUserAddress }) {
-  const { handleDeleteAddress } = UseUserContext();
+  const { handleDeleteAddress, setUserAddresses } = UseUserContext();
+  const setMainAddress = (addressId: string) => {
+    setUserAddresses((prevAddresses) =>
+      prevAddresses.map((addr) => ({
+        ...addr,
+        mainAddress: addr.id === addressId,
+      })),
+    );
+  };
   return (
     <div className="flex flex-col p-2 bg-amber-200/50 rounded-md gap-1 border border-amber-300 shadow-md">
+      <div className="flex gap-2 justify-end ">
+        <p className="text-xs font-mono">{address.mainAddress ? 'main address' : 'change main address'}</p>
+        <input
+          type="radio"
+          name="mainAddress"
+          checked={address.mainAddress}
+          onChange={() => setMainAddress(address.id)}
+          className="cursor-pointer accent-amber-500"
+        />
+      </div>
       <div className="flex">
         <p>{address.street},</p>
         <p className="ml-2">{address.houseNumber}</p>

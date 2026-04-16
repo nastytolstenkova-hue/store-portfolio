@@ -2,6 +2,7 @@ import UseUserContext from "../../hooks/UseUserContext";
 
 import Address from "../../components/Address";
 import Button from "../../components/ui/Button";
+import FormAddNewAddress from "../../components/FormAddNewAddress";
 
 export default function Addresses() {
   const { userAddresses } = UseUserContext();
@@ -17,6 +18,7 @@ export default function Addresses() {
           </li>
         ))}
       </ul>
+      <FormAddNewAddress/>
     </div>
   );
 }
