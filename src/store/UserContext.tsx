@@ -27,6 +27,8 @@ export interface IUserContext {
   userAddresses: IUserAddress[];
   setUserAddresses: React.Dispatch<React.SetStateAction<IUserAddress[]>>;
   handleDeleteAddress: (id:string) => void;
+  selectedEditAddress: IUserAddress | undefined;
+  setSelectedEditAddress: React.Dispatch<React.SetStateAction<IUserAddress | undefined>>;
 }
 
 export const UserContext = createContext<IUserContext | undefined>(undefined);
@@ -50,6 +52,10 @@ export function UserContextProvider({ children }: { children: ReactNode }) {
     }
   });
 
+  const [selectedEditAddress, setSelectedEditAddress] = useState<IUserAddress | undefined>();
+
+   
+
   useEffect(() => {
     localStorage.setItem("userAddresses", JSON.stringify(userAddresses));
   }, [userAddresses]);
@@ -69,7 +75,7 @@ export function UserContextProvider({ children }: { children: ReactNode }) {
 
   return (
     <UserContext.Provider
-      value={{ userInfo, setUserInfo, userAddresses, setUserAddresses, handleDeleteAddress }}
+      value={{ userInfo, setUserInfo, userAddresses, setUserAddresses, handleDeleteAddress, selectedEditAddress, setSelectedEditAddress }}
     >
       {children}
     </UserContext.Provider>

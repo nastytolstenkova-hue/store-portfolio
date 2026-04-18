@@ -1,9 +1,15 @@
 import type { IUserAddress } from "../store/UserContext";
 import UseUserContext from "../hooks/UseUserContext";
 
+export interface IAddress {
+  address: IUserAddress;
+  isEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  isForm: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-export default function Address({ address }: { address: IUserAddress }) {
-  const { handleDeleteAddress, setUserAddresses } = UseUserContext();
+export default function Address({ address, isEdit, isForm }: IAddress) {
+  const { handleDeleteAddress, setUserAddresses, setSelectedEditAddress } =
+    UseUserContext();
   const setMainAddress = (addressId: string) => {
     setUserAddresses((prevAddresses) =>
       prevAddresses.map((addr) => ({
@@ -12,10 +18,13 @@ export default function Address({ address }: { address: IUserAddress }) {
       })),
     );
   };
+
   return (
     <div className="flex flex-col p-2 bg-amber-200/50 rounded-md gap-1 border border-amber-300 shadow-md">
       <div className="flex gap-2 justify-end ">
-        <p className="text-xs font-mono">{address.mainAddress ? 'main address' : 'change main address'}</p>
+        <p className="text-xs font-mono">
+          {address.mainAddress ? "main address" : "change main address"}
+        </p>
         <input
           type="radio"
           name="mainAddress"
@@ -38,7 +47,7 @@ export default function Address({ address }: { address: IUserAddress }) {
       </div>
       <div className="border-b-2 border-amber-400/50"></div>
       <div className="flex justify-between items-center">
-        <button className="flex justify-center underline text-zinc-800 cursor-pointer hover:text-black  transition-colors duration-300 active:scale-95">
+        <button className="flex justify-center underline text-zinc-800 cursor-pointer hover:text-black  transition-colors duration-300 active:scale-95" onClick={()=>{isEdit(true); setSelectedEditAddress(address); isForm(true)} }>
           Edit
         </button>
         <button

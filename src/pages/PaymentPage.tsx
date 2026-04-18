@@ -31,7 +31,7 @@ export default function PaymentPage() {
   const { setCartProducts, cartProducts, totalPrice } = UseCartContext();
   const { sendOrder, setUserOrders } = UseOrderContext();
 
-  const canOrder =   isUserReady;
+  const canOrder =   isCardReady && isUserReady;
 
   const getInfo = (
     fullName: string,
