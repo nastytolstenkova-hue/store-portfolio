@@ -1,73 +1,80 @@
-# React + TypeScript + Vite
+# Store Portfolio Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Modern e-commerce web application built with React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Product catalog with search, filtering, and sorting
+- Product page with detailed information
+- Shopping cart with total price calculation
+- Wishlist functionality
+- Checkout process with validation
+- Simulated payment flow
+- User account:
+  - Saved addresses
+  - Order history
+  - Profile settings
+- Data persistence using localStorage
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- React 19
+- TypeScript
+- Vite
+- React Router
+- Tailwind CSS
+- Context API (state management)
 
-## Expanding the ESLint configuration
+## Payment
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Payment flow is simulated for demo purposes.  
+No real transactions are processed.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Clone the repository:
+git clone https://github.com/nastytolstenkova-hue/store-portfolio.git
+cd store-portfolio
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Install dependencies:
+npm install
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Run the project:
+npm run dev
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Responsive Design
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+The application is optimized for:
+Desktop
+Tablet
+Mobile
+
+Future Improvements
+Authentication (login / logout)
+Backend integration (API)
+Stripe payment integration
+Better UI/UX polish
+Performance optimization
+
+Author
+Nastya
+
+📸 Screenshots
+<img width="1078" height="1131" alt="image" src="https://github.com/user-attachments/assets/13152475-b713-4316-8c70-8c51684a2de6" />
+<img width="1070" height="667" alt="image" src="https://github.com/user-attachments/assets/fc7d6ae6-4892-49dc-a5a3-c87565544c92" />
+<img width="1088" height="963" alt="image" src="https://github.com/user-attachments/assets/c37770d2-1326-42ef-b2d3-9f92b1c2e7c8" />
+<img width="1076" height="1079" alt="image" src="https://github.com/user-attachments/assets/f3385041-c433-497c-9e3b-a23d0cfc40fb" />
+<img width="1080" height="929" alt="image" src="https://github.com/user-attachments/assets/5b1ade03-9ed7-40c6-b611-c5bd720d49eb" />
+
+
+
+
+### Product Page
+<img width="1098" height="825" alt="image" src="https://github.com/user-attachments/assets/3059a194-51ab-43ac-84fb-4bc1d6342dfc" />
+
+### Cart
+<img width="1075" height="1090" alt="image" src="https://github.com/user-attachments/assets/aca12d54-eaa0-4034-9ed8-b8ab062e3c88" />
+
+
+### Checkout
+<img width="990" height="1029" alt="image" src="https://github.com/user-attachments/assets/dfadd851-6500-4004-a263-93ec5fe9f3fe" />
