@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 export default function PaymentPage() {
   const [isCardReady, setIsCardReady] = useState<boolean>(false);
   const [isUserReady, setIsUserReady] = useState<boolean>(false);
-  const [address, setAdress] = useState<IUserAddress>({
+  const [address, setAddress] = useState<IUserAddress>({
     id: '',
     fullName: "",
     street: "",
@@ -41,10 +41,10 @@ export default function PaymentPage() {
     city: string,
     postalCode: string,
     shipMethod: string,
-    isShippingAdressValid: boolean,
+    isShippingAddressValid: boolean,
   ) => {
-    if (isShippingAdressValid) {
-      setAdress({
+    if (isShippingAddressValid) {
+      setAddress({
         id: `${street} ${houseNumber} ${Date.now()}`,
         fullName: fullName,
         street: street,
@@ -62,7 +62,7 @@ export default function PaymentPage() {
   const handlePayFunction = () => {
     if (canOrder) {
       setUserAddresses((prevVal) => [address, ...prevVal]);
-      setAdress({
+      setAddress({
         id: '',
         fullName: "",
         street: "",
@@ -105,8 +105,8 @@ export default function PaymentPage() {
     <div className="grid grid-cols-2">
       <div className="">
         <ShippingAddress
-          setIsShippingAdressValid={setIsUserReady}
-          isShippingAdressValid={isUserReady}
+          setIsShippingAddressValid={setIsUserReady}
+          isShippingAddressValid={isUserReady}
           getUserInfo={getInfo}
         />
         <PaymentMethodComp isCardValid={setIsCardReady} />

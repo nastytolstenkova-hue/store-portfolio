@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
 export interface IPayShippingAddressComp {
-  setIsShippingAdressValid: (valid: boolean) => void;
-  isShippingAdressValid: boolean;
+  setIsShippingAddressValid: (valid: boolean) => void;
+  isShippingAddressValid: boolean;
   getUserInfo: (
     fullName: string,
     street: string,
@@ -11,15 +11,15 @@ export interface IPayShippingAddressComp {
     city: string,
     postalCode: string,
     shipMethod: string,
-    isShippingAdressValid: boolean,
+    isShippingAddressValid: boolean,
   ) => void;
 }
 
 const inputDes = "w-full border rounded-md px-2 bg-white mb-2";
 
 export default function ShippingAddress({
-  isShippingAdressValid,
-  setIsShippingAdressValid,
+  isShippingAddressValid,
+  setIsShippingAddressValid,
   getUserInfo,
 }: IPayShippingAddressComp) {
   const [fullName, setFullName] = useState<string>("");
@@ -42,7 +42,7 @@ export default function ShippingAddress({
       street.length >= 1 && houseNumber.length >= 1 && city.length >= 2;
 
     if (isCodeValide && isNameValide && isOtherValid && isMethodSelected) {
-      setIsShippingAdressValid(true);
+      setIsShippingAddressValid(true);
       getUserInfo(
         format(fullName),
         format(street),
@@ -54,7 +54,7 @@ export default function ShippingAddress({
         true,
       );
     } else {
-      setIsShippingAdressValid(false);
+      setIsShippingAddressValid(false);
     }
   }, [fullName, street, houseNumber, city, postalCode, shipMethod]);
 
@@ -134,7 +134,7 @@ export default function ShippingAddress({
             Express Delivery <span className="text-xs">$25, 2-3 days</span>
           </p>
         </div>
-        {!isShippingAdressValid && fullName.length > 0 && (
+        {!isShippingAddressValid && fullName.length > 0 && (
           <p className="text-red-500 text-xs">
             Please fill out all fields correctly!
           </p>

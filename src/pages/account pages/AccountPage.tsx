@@ -4,7 +4,7 @@ import wishListImg from '../../image/icons/wish-list.png'
 import logOutImg from '../../image/icons/log-out.png'
 import personalInfoImg from '../../image/icons/personal-info.png'
 import userOdersImg from '../../image/icons/your-orders.png'
-import adressesImg from '../../image/icons/adresses.png'
+import addressesImg from '../../image/icons/addresses.png'
 
 import UseUserContext from "../../hooks/UseUserContext";
 
@@ -32,8 +32,8 @@ export default function AccountPage() {
             <NavLink to="/account/orders" className={({isActive})=>linkdes(isActive)}>Your orders</NavLink>
             <img src={personalInfoImg} className={`h-5 w-5`}/>
             <NavLink to="/account/profile" className={({isActive})=>linkdes(isActive)}>Personal Info</NavLink>
-            <img src={adressesImg} className={`h-5 w-5`}/>
-            <NavLink to="/account/adresses" className={({isActive})=>linkdes(isActive)}>Adresses</NavLink>
+            <img src={addressesImg} className={`h-5 w-5`}/>
+            <NavLink to="/account/addresses" className={({isActive})=>linkdes(isActive)}>Addresses</NavLink>
           </div>
 
           <div>

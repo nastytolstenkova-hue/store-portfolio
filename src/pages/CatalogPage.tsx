@@ -1,18 +1,9 @@
-import { useState } from "react";
 import UseProductContext from "../hooks/UseProductContext";
 import OneProduct from "../components/OneProduct";
 
 export default function CatalogPage() {
-  const {
-    productsList,
-    inputSearcher,
-    category,
-    setCategory,
-    filtered,
-    sortBy,
-    setSortBy,
-    sortedProducts,
-  } = UseProductContext();
+  const { category, setCategory, sortBy, setSortBy, sortedProducts } =
+    UseProductContext();
 
   return (
     <div>
@@ -46,8 +37,6 @@ export default function CatalogPage() {
           <option value="risingPrice">Rising Price</option>
           <option value="lowerPrice">Lower Price</option>
         </select>
-
-        
       </div>
       {sortedProducts.length === 0 ? (
         <p className="text-center mt-10">No matches for your request.</p>

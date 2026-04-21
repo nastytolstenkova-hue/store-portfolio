@@ -47,7 +47,7 @@ export function UserContextProvider({ children }: { children: ReactNode }) {
       const saved = localStorage.getItem("userAddresses");
       return saved ? (JSON.parse(saved) as IUserAddress[]) : [];
     } catch (error) {
-      console.error("Error adresses parsing:", error);
+      console.error("Error addresses parsing:", error);
       return [];
     }
   });

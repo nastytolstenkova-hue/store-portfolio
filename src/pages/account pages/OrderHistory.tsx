@@ -1,4 +1,4 @@
-import OneOrder from "../../components/orserHistory/OneOrder";
+import OneOrder from "../../components/orderHistory/OneOrder";
 import UseOrderContext from "../../hooks/UseOrderContext";
 
 export default function OrderHistory() {

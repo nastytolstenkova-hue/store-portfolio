@@ -3,7 +3,7 @@ import Button from "../components/ui/Button";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-export default function SuccesPayPage() {
+export default function SuccessPayPage() {
   const location = useLocation();
   const state = location.state as { orderId: string } | null;
   const orderId = state?.orderId || "N/A";

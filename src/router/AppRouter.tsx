@@ -11,9 +11,9 @@ import ProductPage from "../pages/ProductPage";
 import WishListPage from "../pages/account pages/WishListPage";
 import OrderHistory from "../pages/account pages/OrderHistory";
 import ProfileSettings from "../pages/account pages/ProfileSettings";
-import Adresses from "../pages/account pages/Addresses";
-import OneOrderDetails from "../components/orserHistory/OneOrderDetails";
-import SuccesPayPage from "../pages/SuccesPayPage";
+import Addresses from "../pages/account pages/Addresses";
+import OneOrderDetails from "../components/orderHistory/OneOrderDetails";
+import SuccessPayPage from "../pages/SuccessPayPage";
 import PaymentPage from "../pages/PaymentPage";
 
 export default function AppRouter() {
@@ -27,7 +27,7 @@ export default function AppRouter() {
         { path: "/catalog", element: <CatalogPage /> },
         { path: "/catalog/:id", element: <ProductPage /> },
         { path: "/payment", element: <PaymentPage /> },
-        { path: "/success", element: <SuccesPayPage /> },
+        { path: "/success", element: <SuccessPayPage /> },
         {
           path: "/account",
           element: <AccountPage />,
@@ -36,7 +36,7 @@ export default function AppRouter() {
             { path: "wishlist", element: <WishListPage /> },
             { path: "orders", element: <OrderHistory /> },
             { path: "profile", element: <ProfileSettings /> },
-            { path: "adresses", element: <Adresses /> },
+            { path: "addresses", element: <Addresses /> },
             { path: "orderDetails/:id", element: <OneOrderDetails /> },
           ],
         },

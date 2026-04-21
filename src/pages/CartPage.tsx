@@ -21,7 +21,7 @@ export default function CartPage() {
       ) : (
         <div>
           <h1 className="flex justify-center font-mono  text-3xl uppercase my-5">
-            your shoping cart
+            your shopping cart
           </h1>
           <div className="grid grid-cols-[2fr_1fr] gap-3 table-fixed">
             <div className="border border-zinc-600/40 rounded-xl shadow-md shadow-zinc-300 p-3 ">
