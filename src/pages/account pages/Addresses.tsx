@@ -4,16 +4,19 @@ import { useState } from "react";
 import Address from "../../components/Address";
 import Button from "../../components/ui/Button";
 import FormAddNewAddress from "../../components/FormAddNewAddress";
+import RegistrationForm from "../../components/loginComponents/RegistrationForm";
 
 export default function Addresses() {
   const [isAddAddressForm, setIsAddAddressForm] = useState<boolean>(false);
   const [isEditAddress, setIsEditAddress] = useState<boolean>(false);
   const { userAddresses } = UseUserContext();
+  
 
  
 
   return (
     <div>
+      <RegistrationForm/>
       <h3 className="text-xl m-2">My Addresses</h3>
       <Button
         text="Add New Address"

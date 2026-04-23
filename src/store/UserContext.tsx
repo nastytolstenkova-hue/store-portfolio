@@ -1,7 +1,7 @@
 import { useState, useEffect, createContext, type ReactNode } from "react";
 
 export interface UserInfo {
-  id: number;
+  id: string;
   userName: string;
   email: string;
   phone: string;
@@ -21,27 +21,33 @@ export interface IUserAddress {
   mainAddress: boolean;
 }
 
+
+
 export interface IUserContext {
   userInfo: UserInfo;
   setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>;
   userAddresses: IUserAddress[];
   setUserAddresses: React.Dispatch<React.SetStateAction<IUserAddress[]>>;
-  handleDeleteAddress: (id:string) => void;
+  handleDeleteAddress: (id: string) => void;
   selectedEditAddress: IUserAddress | undefined;
-  setSelectedEditAddress: React.Dispatch<React.SetStateAction<IUserAddress | undefined>>;
+  setSelectedEditAddress: React.Dispatch<
+    React.SetStateAction<IUserAddress | undefined>
+  >;
+  
 }
 
 export const UserContext = createContext<IUserContext | undefined>(undefined);
 
 export function UserContextProvider({ children }: { children: ReactNode }) {
   const [userInfo, setUserInfo] = useState<UserInfo>({
-    id: 0,
+    id: '',
     userName: "",
     email: "",
     phone: "",
     birthDate: "",
     contactMethod: "Email",
   });
+  
   const [userAddresses, setUserAddresses] = useState<IUserAddress[]>(() => {
     try {
       const saved = localStorage.getItem("userAddresses");
@@ -52,9 +58,11 @@ export function UserContextProvider({ children }: { children: ReactNode }) {
     }
   });
 
-  const [selectedEditAddress, setSelectedEditAddress] = useState<IUserAddress | undefined>();
+ 
 
-   
+  const [selectedEditAddress, setSelectedEditAddress] = useState<
+    IUserAddress | undefined
+  >();
 
   useEffect(() => {
     localStorage.setItem("userAddresses", JSON.stringify(userAddresses));
@@ -75,7 +83,16 @@ export function UserContextProvider({ children }: { children: ReactNode }) {
 
   return (
     <UserContext.Provider
-      value={{ userInfo, setUserInfo, userAddresses, setUserAddresses, handleDeleteAddress, selectedEditAddress, setSelectedEditAddress }}
+      value={{
+        userInfo,
+        setUserInfo,
+        userAddresses,
+        setUserAddresses,
+        handleDeleteAddress,
+        selectedEditAddress,
+        setSelectedEditAddress,
+        
+      }}
     >
       {children}
     </UserContext.Provider>

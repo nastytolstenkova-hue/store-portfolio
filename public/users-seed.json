@@ -1,0 +1,30 @@
+[
+  {
+    "id": "u1",
+    "userName": "AliceWunder",
+    "email": "alice@example.com",
+    "password": "password123",
+    "role": "user"
+  },
+  {
+    "id": "u2",
+    "userName": "AdminMaster",
+    "email": "admin@store.com",
+    "password": "admin-secure-pass",
+    "role": "admin"
+  },
+  {
+    "id": "u3",
+    "userName": "BobLight",
+    "email": "bob@test.com",
+    "password": "qwerty2024",
+    "role": "user"
+  },
+  {
+    "id": "u4",
+    "userName": "Elena_Design",
+    "email": "elena@design.it",
+    "password": "my-secret-password",
+    "role": "user"
+  }
+]
