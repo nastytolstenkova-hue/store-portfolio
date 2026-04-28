@@ -6,10 +6,11 @@ import personalInfoImg from '../../image/icons/personal-info.png'
 import userOdersImg from '../../image/icons/your-orders.png'
 import addressesImg from '../../image/icons/addresses.png'
 
-import UseUserContext from "../../hooks/UseUserContext";
+
+import UseAuthContext from "../../hooks/UseAuthContext";
 
 export default function AccountPage() {
-  const {userInfo} = UseUserContext()
+  const {currentUser} = UseAuthContext();
   const linkdes = ( isActive: boolean ) =>
     isActive
       ? " py-1 px-2 w-full rounded-xl cursor-pointer whitespace-nowrap bg-amber-300/30  transition-colors duration-300 border-amber-500/30 shadow-sm shadow-amber-800/50"
@@ -22,8 +23,9 @@ export default function AccountPage() {
         <div className="flex flex-col ml-5 pb-10 border border-zinc-200 px-8 rounded-2xl w-fit shadow-md h-[80vh] sticky top-5 justify-between">
           <div className="flex flex-col justify-center items-center my-3">
             <p>Welcome,</p>
-            <p>{userInfo.userName}</p>
-            <p>{userInfo.email}</p>
+            {currentUser ? <div> <p>{currentUser.userName}</p>
+            <p>{currentUser.email}</p></div> : <p>user</p>}
+           
           </div>
           <div className="grid grid-cols-[1fr_6fr] gap-2 items-center">
             <img src={wishListImg} className={`h-5 w-5`}/>

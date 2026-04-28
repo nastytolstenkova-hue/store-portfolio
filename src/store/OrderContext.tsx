@@ -11,6 +11,7 @@ export interface IOrderItem extends Pick<
 
 export interface IOrder {
   id: string;
+  userId: string;
   date: string;
   status: "Delivered" | "In Transit" | "Processing";
   totalPrice: number;
