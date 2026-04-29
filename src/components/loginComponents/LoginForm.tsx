@@ -2,6 +2,8 @@ import { useState } from "react";
 import UseAuthContext from "../../hooks/UseAuthContext";
 import Button from "../ui/Button";
 
+
+
 export default function LoginForm() {
   const { login, setFormLogIn, setFormSignUp } = UseAuthContext();
   const [userLogin, setUserLogin] = useState<string>("");
@@ -13,7 +15,7 @@ export default function LoginForm() {
         
         <button
           type="button"
-          className="text-amber-200 rounded-xs w-6 h-6 ml-7.5 absolute top-2 right-4  active:cursor-pointer hover:cursor-pointer hover:text-amber-300"
+          className="text-amber-200 rounded-xs w-6 h-6 ml-7.5 absolute top-2 right-4  active:cursor-pointer hover:cursor-pointer hover:text-amber-300" onClick={()=>setFormLogIn(false)}
         >
           ✕
         </button>

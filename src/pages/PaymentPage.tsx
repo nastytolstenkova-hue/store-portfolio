@@ -8,6 +8,7 @@ import UseCartContext from "../hooks/UseCartContext";
 import UseOrderContext from "../hooks/UseOrderContext";
 import type { IOrder } from "../store/OrderContext";
 import { useNavigate } from "react-router-dom";
+import UseAuthContext from "../hooks/UseAuthContext";
 
 
 export default function PaymentPage() {
@@ -24,6 +25,8 @@ export default function PaymentPage() {
     shipMethod: "",
     mainAddress: false
   });
+
+  const {currentUser} = UseAuthContext();
 
   const navigate = useNavigate();
 
@@ -80,6 +83,7 @@ export default function PaymentPage() {
 
       const newOrder: IOrder = {
         id: orderId,
+        userId: currentUser ? currentUser.id : String(Date.now()),
         date: new Date().toISOString().split("T")[0],
         status: "Processing",
         totalPrice: totalPrice,

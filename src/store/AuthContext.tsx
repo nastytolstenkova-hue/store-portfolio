@@ -3,7 +3,7 @@ import type { UserInfo } from "./UserContext";
 
 export interface ILogIn extends Pick<
   UserInfo,
-  "id" | "userName" | "email" | "phone"
+  "id" | "userName" | "email" | "phone" | 'birthDate' | 'contactMethod'
 > {
   role?: string;
 }
@@ -74,6 +74,7 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
         };
         setCurrentUser(userData);
         localStorage.setItem("currentUser", JSON.stringify(userData));
+        setFormLogIn(false)
         return true;
       }
     }
@@ -104,6 +105,7 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
   ) => {
     if (pass === repeatPass) {
       return login(userEmail, pass, true, userPhone, userName);
+      setFormSignUp(false)
     }
     return false;
   };

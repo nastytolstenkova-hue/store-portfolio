@@ -2,6 +2,8 @@ import { useState, useEffect, createContext, type ReactNode } from "react";
 import type { IProduct } from "./ProductsContext";
 import UseProductContext from "../hooks/UseProductContext";
 
+import UseAuthContext from "../hooks/UseAuthContext";
+
 export interface ICartProduct extends IProduct {
   count: number;
 }
@@ -31,10 +33,17 @@ export function CartContextProvider({ children }: { children: ReactNode }) {
     }
   });
 
+  const { currentUser } = UseAuthContext();
 
   useEffect(() => {
     localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
   }, [cartProducts]);
+
+  useEffect(() => {
+    if (!currentUser) {
+      localStorage.removeItem("cartProducts");
+    }
+  }, [currentUser]);
 
   const summProd = cartProducts.reduce((acc, prod) => acc + prod.count, 0);
 
@@ -103,7 +112,7 @@ export function CartContextProvider({ children }: { children: ReactNode }) {
         plusProduct,
         minusProduct,
         removeProduct,
-        setCartProducts
+        setCartProducts,
       }}
     >
       {children}

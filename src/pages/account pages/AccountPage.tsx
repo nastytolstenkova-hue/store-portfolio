@@ -6,11 +6,12 @@ import personalInfoImg from '../../image/icons/personal-info.png'
 import userOdersImg from '../../image/icons/your-orders.png'
 import addressesImg from '../../image/icons/addresses.png'
 
-
 import UseAuthContext from "../../hooks/UseAuthContext";
 
+
 export default function AccountPage() {
-  const {currentUser} = UseAuthContext();
+  const {currentUser, logout, setFormLogIn} = UseAuthContext();
+
   const linkdes = ( isActive: boolean ) =>
     isActive
       ? " py-1 px-2 w-full rounded-xl cursor-pointer whitespace-nowrap bg-amber-300/30  transition-colors duration-300 border-amber-500/30 shadow-sm shadow-amber-800/50"
@@ -42,7 +43,7 @@ export default function AccountPage() {
             <div className="border border-zinc-500"></div>
             <div className="grid grid-cols-[1fr_6fr]">
               <img src={logOutImg} className={`h-5 w-5`}/>
-              <button className="flex justify-center cursor-pointer hover:text-black  transition-colors duration-300 active:scale-95 ">Log Out</button>
+              <button className="flex justify-center text-zinc-700 cursor-pointer hover:text-black  transition-colors duration-300 active:scale-95 " onClick={()=>{currentUser ? logout() : setFormLogIn(true)}}>{currentUser ? 'Log out' : 'Log in'}</button>
             </div>
             
           </div>
