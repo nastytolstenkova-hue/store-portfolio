@@ -4,27 +4,39 @@
     "userName": "AliceWunder",
     "email": "alice@example.com",
     "password": "password123",
-    "role": "user"
+    "role": "user",
+    "phone": "+48 123 456 789",
+    "birthDate": "1995-05-20",
+    "contactMethod": "Email"
   },
   {
     "id": "u2",
     "userName": "AdminMaster",
     "email": "admin@store.com",
     "password": "admin-secure-pass",
-    "role": "admin"
+    "role": "admin",
+    "phone": "+48 123 456 789",
+    "birthDate": "1995-05-20",
+    "contactMethod": "Email"
   },
   {
     "id": "u3",
     "userName": "BobLight",
     "email": "bob@test.com",
     "password": "qwerty2024",
-    "role": "user"
+    "role": "user",
+    "phone": "+48 123 456 789",
+    "birthDate": "1995-05-20",
+    "contactMethod": "Email"
   },
   {
     "id": "u4",
     "userName": "Elena_Design",
     "email": "elena@design.it",
     "password": "my-secret-password",
-    "role": "user"
+    "role": "user",
+    "phone": "+48 123 456 789",
+    "birthDate": "1995-05-20",
+    "contactMethod": "Email"
   }
 ]

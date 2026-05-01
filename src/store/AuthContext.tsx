@@ -1,15 +1,22 @@
 import { useState, useEffect, createContext, type ReactNode } from "react";
-import type { UserInfo } from "./UserContext";
 
-export interface ILogIn extends Pick<
-  UserInfo,
-  "id" | "userName" | "email" | "phone" | 'birthDate' | 'contactMethod'
-> {
+export interface ILogIn {
+  id: string;
+  userName: string;
+  email: string;
+  phone: string;
+  birthDate?: string;
+  contactMethod?: string;
   role?: string;
 }
 
+type IFullUserInfo = ILogIn & {
+  password?: string;
+};
+
 export interface IAuthContext {
   currentUser: ILogIn | null;
+  setCurrentUser: React.Dispatch<React.SetStateAction<ILogIn | null>>;
   login: (email: string, pass: string) => boolean;
   logout: () => void;
   signUp: (
@@ -23,12 +30,15 @@ export interface IAuthContext {
   setFormLogIn: React.Dispatch<React.SetStateAction<boolean>>;
   formSignUp: boolean;
   setFormSignUp: React.Dispatch<React.SetStateAction<boolean>>;
+  allUsers: IFullUserInfo[];
+  updatePassword: (newPass: string) => void;
+  updateUser: (updatedData: IFullUserInfo) => void;
 }
 
 export const AuthContext = createContext<IAuthContext | undefined>(undefined);
 
 export function AuthContextProvider({ children }: { children: ReactNode }) {
-  const [allUsers, setAllUsers] = useState<any[]>(() => {
+  const [allUsers, setAllUsers] = useState<IFullUserInfo[]>(() => {
     const saved = localStorage.getItem("users");
     return saved ? JSON.parse(saved) : [];
   });
@@ -53,6 +63,17 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
+  const updateUser = (updatedData: IFullUserInfo) => {
+    setAllUsers((prevVal) =>
+      prevVal.map((user) =>
+        user.id === updatedData.id ? { ...user, ...updatedData } : user,
+      ),
+    );
+    const { password, ...safeData } = updatedData;
+    setCurrentUser(safeData);
+    localStorage.setItem("currentUser", JSON.stringify(safeData));
+  };
+
   const login = (
     email: string,
     pass: string,
@@ -71,10 +92,12 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
           phone: user.phone,
           userName: user.userName,
           role: user.role,
+          contactMethod: user.contactMethod,
+          birthDate: user.birthDate,
         };
         setCurrentUser(userData);
         localStorage.setItem("currentUser", JSON.stringify(userData));
-        setFormLogIn(false)
+        setFormLogIn(false);
         return true;
       }
     }
@@ -104,8 +127,8 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
     repeatPass: string,
   ) => {
     if (pass === repeatPass) {
+      setFormSignUp(false);
       return login(userEmail, pass, true, userPhone, userName);
-      setFormSignUp(false)
     }
     return false;
   };
@@ -115,8 +138,34 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem("currentUser");
   };
 
+  const updatePassword = (newPass: string) => {
+    if (!currentUser) return;
+
+    setAllUsers((prevUsers) =>
+      prevUsers.map((u) =>
+        u.email === currentUser.email ? { ...u, password: newPass } : u,
+      ),
+    );
+    updateUser({ ...currentUser, password: newPass });
+  };
+
   return (
-    <AuthContext.Provider value={{ currentUser, login, logout, signUp, formLogIn, setFormLogIn, formSignUp, setFormSignUp }}>
+    <AuthContext.Provider
+      value={{
+        currentUser,
+        setCurrentUser,
+        login,
+        logout,
+        signUp,
+        formLogIn,
+        setFormLogIn,
+        formSignUp,
+        setFormSignUp,
+        allUsers,
+        updatePassword,
+        updateUser,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

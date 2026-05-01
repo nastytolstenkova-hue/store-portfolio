@@ -1,33 +1,37 @@
 import { useState } from "react";
-import UseUserContext from "../../hooks/UseUserContext";
-import type { UserInfo } from "../../store/UserContext";
+import type { ILogIn } from "../../store/AuthContext";
 import Button from "../../components/ui/Button";
 import UseAuthContext from "../../hooks/UseAuthContext";
 import LoginForm from "../../components/loginComponents/LoginForm";
 import RegistrationForm from "../../components/loginComponents/RegistrationForm";
 
 export default function ProfileSettings() {
-  const { userInfo, setUserInfo } = UseUserContext();
+  const {
+    setFormLogIn,
+    formLogIn,
+    formSignUp,
+    currentUser,
+    setCurrentUser,
+    allUsers,
+    updatePassword,
+    updateUser,
+  } = UseAuthContext();
+
   const [isEdit, setIsEdit] = useState<boolean>(false);
-  const [password, setPassword] = useState<string>("12345qwert.");
   const [inputPassw, setInputPassw] = useState({
     curPas: "",
     newPas: "",
     repeatNewPas: "",
   });
   const [passError, setPassError] = useState<string>("");
-  const [user, setUser] = useState<UserInfo>(userInfo);
-  const [templateUsData, setTemplateUsData] = useState<UserInfo>(userInfo);
+  const [user, setUser] = useState<ILogIn | null>(currentUser);
+  const [templateUsData, setTemplateUsData] = useState<ILogIn | null>(
+    currentUser,
+  );
   const [isChangePassw, setIsChangePassw] = useState<boolean>(false);
-  const { setFormLogIn, formLogIn, formSignUp, currentUser } = UseAuthContext();
 
   const handleChangePassw = () => {
     setPassError("");
-
-    if (password !== inputPassw.curPas) {
-      setPassError("Current password is incorrect.");
-      return;
-    }
 
     if (inputPassw.newPas !== inputPassw.repeatNewPas) {
       setPassError("New passwords do not match.");
@@ -39,7 +43,17 @@ export default function ProfileSettings() {
       return;
     }
 
-    setPassword(inputPassw.newPas);
+    if (templateUsData) {
+      const user = allUsers.find(
+        (u: any) =>
+          u.password === inputPassw.curPas && u.email === templateUsData.email,
+      );
+      if (!user) {
+        setPassError("Current password is incorrect.");
+        return;
+      }
+    }
+    updatePassword(inputPassw.newPas);
     setIsChangePassw(false);
     setInputPassw({ curPas: "", newPas: "", repeatNewPas: "" });
     setPassError("Success!");
@@ -55,9 +69,13 @@ export default function ProfileSettings() {
 
   const handleSave = () => {
     if (isEdit) {
-      setUserInfo(user);
+      if (templateUsData) {
+        updateUser(templateUsData);
+      }
+      setCurrentUser(user);
       setTemplateUsData(user);
       setIsEdit(false);
+
       return;
     }
     return setIsEdit(true);
@@ -67,10 +85,15 @@ export default function ProfileSettings() {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
-    setUser((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+
+    setTemplateUsData((prev) => {
+      if (!prev) return null;
+
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
   };
 
   const inputDesign = isEdit
@@ -92,7 +115,7 @@ export default function ProfileSettings() {
                 className={inputDesign}
                 placeholder="Write User Name here"
                 type="text"
-                value={currentUser.userName}
+                value={templateUsData ? templateUsData.userName : ""}
                 onChange={handleChange}
               />
             </label>
@@ -104,7 +127,7 @@ export default function ProfileSettings() {
                 className={inputDesign}
                 placeholder="Write email here"
                 type="email"
-                value={currentUser.email}
+                value={templateUsData ? templateUsData.email : ""}
                 onChange={handleChange}
               />
             </label>
@@ -122,7 +145,7 @@ export default function ProfileSettings() {
                 className={inputDesign}
                 type="text"
                 placeholder="Write your phone"
-                value={currentUser.phone}
+                value={templateUsData ? templateUsData.phone : ""}
                 onChange={handleChange}
               />
             </label>
@@ -134,7 +157,7 @@ export default function ProfileSettings() {
                 type="date"
                 placeholder="Date of Birth"
                 disabled={!isEdit}
-                value='{currentUser}'
+                value={templateUsData?.birthDate || ""}
                 onChange={handleChange}
               />
             </label>
@@ -146,7 +169,7 @@ export default function ProfileSettings() {
                 disabled={!isEdit}
                 name="contactMethod"
                 id="contactMethod"
-                value={user.contactMethod}
+                value={templateUsData ? templateUsData.contactMethod : ""}
                 onChange={handleChange}
               >
                 <option>Phone Call</option>
