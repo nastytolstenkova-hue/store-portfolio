@@ -15,6 +15,7 @@ import Addresses from "../pages/account pages/Addresses";
 import OneOrderDetails from "../components/orderHistory/OneOrderDetails";
 import SuccessPayPage from "../pages/SuccessPayPage";
 import PaymentPage from "../pages/PaymentPage";
+import ProtectedRoute from "../pages/account pages/ProtectedRoute";
 
 export default function AppRouter() {
   const router = createBrowserRouter([
@@ -29,15 +30,20 @@ export default function AppRouter() {
         { path: "/payment", element: <PaymentPage /> },
         { path: "/success", element: <SuccessPayPage /> },
         {
-          path: "/account",
-          element: <AccountPage />,
+          element: <ProtectedRoute/>,
           children: [
-            { index: true, element: <Navigate to="profile" /> },
-            { path: "wishlist", element: <WishListPage /> },
-            { path: "orders", element: <OrderHistory /> },
-            { path: "profile", element: <ProfileSettings /> },
-            { path: "addresses", element: <Addresses /> },
-            { path: "orderDetails/:id", element: <OneOrderDetails /> },
+            {
+              path: "/account",
+              element: <AccountPage />,
+              children: [
+                { index: true, element: <Navigate to="profile" /> },
+                { path: "wishlist", element: <WishListPage /> },
+                { path: "orders", element: <OrderHistory /> },
+                { path: "profile", element: <ProfileSettings /> },
+                { path: "addresses", element: <Addresses /> },
+                { path: "orderDetails/:id", element: <OneOrderDetails /> },
+              ],
+            },
           ],
         },
         { path: "/cart", element: <CartPage /> },

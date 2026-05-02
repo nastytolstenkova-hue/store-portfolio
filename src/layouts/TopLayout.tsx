@@ -1,16 +1,21 @@
 import MainNavigation from "../router/MainNavigation";
+import UseAuthContext from "../hooks/UseAuthContext";
+import LoginForm from "../components/loginComponents/LoginForm";
+import RegistrationForm from "../components/loginComponents/RegistrationForm";
 
 import { Outlet } from "react-router-dom";
 
-export default function TopLayout(){
+export default function TopLayout() {
+  const { formLogIn, formSignUp } = UseAuthContext();
   return (
     <div>
-      
-      <MainNavigation/>
+      {formLogIn && <LoginForm />}
+      {formSignUp && <RegistrationForm />}
+
+      <MainNavigation />
       <main>
-        <Outlet/>
+        <Outlet />
       </main>
-      
     </div>
-  )
+  );
 }

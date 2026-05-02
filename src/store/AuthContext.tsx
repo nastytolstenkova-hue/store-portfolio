@@ -83,7 +83,7 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
   ) => {
     if (!isNewUser) {
       const user = allUsers.find(
-        (u: any) => u.email === email && u.password === pass,
+        (u:IFullUserInfo) => u.email === email && u.password === pass,
       );
       if (user) {
         const userData: ILogIn = {
@@ -102,7 +102,7 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
       }
     }
     if (isNewUser) {
-      const exists = allUsers.some((u: any) => u.email === email);
+      const exists = allUsers.some((u: IFullUserInfo) => u.email === email);
       if (exists) return false;
 
       const userData: ILogIn = {
