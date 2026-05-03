@@ -52,10 +52,9 @@ export default function OneProduct({ product }: { product: IProduct }) {
 
       <div className="grid grid-cols-[5fr_1fr] justify-center items-center">
         <Button
-          text="add to cart"
-          onClick={() => {
-            addCartProduct(product.id);
-          }}
+          text={product.inStock ? "add to cart" : "out of stock"}
+          disabled={!product.inStock}
+          onClick={() => product.inStock && addCartProduct(product.id)}
           className="mx-auto w-4/5"
         />
 

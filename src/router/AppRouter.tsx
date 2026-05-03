@@ -24,6 +24,7 @@ export default function AppRouter() {
       element: <TopLayout />,
       errorElement: <ErrorPage />,
       children: [
+        { index: true, element: <Navigate to="/main" replace /> },
         { path: "/main", element: <MainPage /> },
         { path: "/catalog", element: <CatalogPage /> },
         { path: "/catalog/:id", element: <ProductPage /> },

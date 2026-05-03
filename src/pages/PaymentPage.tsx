@@ -31,7 +31,7 @@ export default function PaymentPage() {
   const navigate = useNavigate();
 
   const { setUserAddresses } = UseUserContext();
-  const { setCartProducts, cartProducts, totalPrice } = UseCartContext();
+  const { setCartProducts, cartProducts, totalPrice, summProd } = UseCartContext();
   const { sendOrder, setUserOrders } = UseOrderContext();
 
   const canOrder =   isCardReady && isUserReady;
@@ -63,6 +63,9 @@ export default function PaymentPage() {
   };
 
   const handlePayFunction = () => {
+    if (summProd === 0){
+      return
+    }
     if (canOrder) {
       setUserAddresses((prevVal) => [address, ...prevVal]);
       setAddress({
@@ -106,8 +109,8 @@ export default function PaymentPage() {
   };
 
   return (
-    <div className="grid grid-cols-[2fr_1fr] ">
-      <div className="flex flex-col mx-auto w-[90%] sm:w-[80%] lg:w-[70%] xl:w-[50%] xl:text-xl mr-0">
+    <div className="grid grid-cols-1 sm:grid-cols-[2fr_1fr] gap-3">
+      <div className="flex flex-col mx-auto w-[90%] sm:w-[80%] sm:mr-0 lg:w-[70%] xl:w-[50%] xl:text-xl ">
         <ShippingAddress
           setIsShippingAddressValid={setIsUserReady}
           isShippingAddressValid={isUserReady}
@@ -115,7 +118,7 @@ export default function PaymentPage() {
         />
         <PaymentMethodComp isCardValid={setIsCardReady} />
       </div>
-      <div className="flex ml-0 h-fit mx-auto sm:text-base lg:text-lg xl:text-xl">
+      <div className="flex justify-center sm:ml-0 h-fit mx-auto sm:text-base lg:text-lg xl:text-xl w-[90%] ">
         <OrderSummPay payFunction={handlePayFunction} />
       </div>
     </div>

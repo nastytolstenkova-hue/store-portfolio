@@ -18,8 +18,8 @@ export default function AccountPage() {
 
   return (
     <div className="w-full mt-5 cursor-default ">
-      <div className="grid grid-cols-[1fr_2fr] xl:text-xl">
-        <div className="flex flex-col items-center bg-amber-300/30 ml-5 pb-10 border border-zinc-200 px-8 rounded-2xl w-fit shadow-md h-[80vh] sticky top-5 justify-between xl:w-[50%]">
+      <div className="grid sm:grid-cols-[1fr_2fr] xl:text-xl gap-3">
+        <div className="flex flex-col gap-5 items-center bg-amber-300/30 mx-auto sm:ml-5 pb-10 border border-zinc-200 px-8 rounded-2xl w-[80%] sm:w-fit shadow-md sm:h-[80vh] sm:sticky top-5 sm:justify-between  xl:w-[50%]">
           <div className="flex flex-col justify-center items-center my-3">
             <p>Welcome,</p>
             {currentUser ? (
@@ -32,28 +32,28 @@ export default function AccountPage() {
             )}
           </div>
           <div className="grid grid-cols-[1fr_6fr] gap-2 items-center">
-            <img src={wishListImg} className={`h-5 w-5`} />
+            <img src={wishListImg} className={`h-5 w-5`} alt='wishlist' />
             <NavLink
               to="/account/wishlist"
               className={({ isActive }) => linkdes(isActive)}
             >
               Wish List
             </NavLink>
-            <img src={userOdersImg} className={`h-5 w-5`} />
+            <img src={userOdersImg} className={`h-5 w-5`} alt='user-orders' />
             <NavLink
               to="/account/orders"
               className={({ isActive }) => linkdes(isActive)}
             >
               Your orders
             </NavLink>
-            <img src={personalInfoImg} className={`h-5 w-5`} />
+            <img src={personalInfoImg} className={`h-5 w-5`} alt='user-info' />
             <NavLink
               to="/account/profile"
               className={({ isActive }) => linkdes(isActive)}
             >
               Personal Info
             </NavLink>
-            <img src={addressesImg} className={`h-5 w-5`} />
+            <img src={addressesImg} className={`h-5 w-5`} alt='addresses'/>
             <NavLink
               to="/account/addresses"
               className={({ isActive }) => linkdes(isActive)}
@@ -65,7 +65,7 @@ export default function AccountPage() {
           <div>
             <div className="border border-zinc-500"></div>
             <div className="grid grid-cols-[1fr_6fr]">
-              <img src={logOutImg} className={`h-5 w-5`} />
+              <img src={logOutImg} className={`h-5 w-5`} alt='log-out'/>
               <button
                 className="flex justify-center text-zinc-700 cursor-pointer hover:text-black  transition-colors duration-300 active:scale-95 "
                 onClick={() => {

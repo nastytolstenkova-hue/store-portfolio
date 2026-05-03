@@ -26,15 +26,15 @@ export default function MainNavigation() {
 
       <div className={`flex-1 flex justify-end mx-3 topNav`}>
         <NavLink to="/catalog" className={textWithIcon}>
-          <img src={catalog} className={`h-5 w-5 mr-2`} />
+          <img src={catalog} className={`h-5 w-5 mr-2`} alt='catalog'/>
           Catalog
         </NavLink>
         <NavLink to="/account" className={textWithIcon}>
-          <img src={user} className="h-5 w-5 mr-2" />
+          <img src={user} className="h-5 w-5 mr-2" alt='account'/>
           Account
         </NavLink>
         <NavLink to="/cart" className={textWithIcon}>
-          <img src={cart} className="h-5 w-5 mr-2" />
+          <img src={cart} className="h-5 w-5 mr-2" alt='cart'/>
           <div className="relative">
             {summProd > 0 && (
               <span className="absolute -top-5 right-0   flex items-center justify-center bg-amber-400/80 text-[11px] font-bold w-4 h-4 rounded-full shadow-sm">

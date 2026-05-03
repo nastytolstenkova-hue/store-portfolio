@@ -9,9 +9,14 @@ import UseWishListContext from "../hooks/UseWishListContext";
 export default function ProductPage() {
   const [quality, setQuality] = useState(1);
   const { id } = useParams<{ id: string }>();
-  const {  productsList } = UseProductContext();
+  const { productsList } = UseProductContext();
   const { addCartProduct } = UseCartContext();
-  const {  addWishList } = UseWishListContext();
+  const { addWishList } = UseWishListContext();
+
+  const minusProduct = () => {
+    if (quality === 1) return;
+    setQuality((prevVal) => prevVal - 1);
+  };
 
   const product: IProduct | undefined = productsList.find(
     (prod) => prod.id === Number(id),
@@ -26,8 +31,8 @@ export default function ProductPage() {
     " hover:bg-zinc-500/40  transition-colors duration-300 active:scale-95";
 
   return (
-    <div className="grid grid-cols-[2fr_3fr] gap-5 mt-5 ml-5 font-sans cursor-default">
-      <div>
+    <div className="grid grid-cols-1 sm:grid-cols-[2fr_3fr] gap-5 mt-5 ml-5 font-sans cursor-default">
+      <div className="w-[80%] sm:w-full mx-auto">
         <img src={product.image} alt={product.name} className="rounded-xl " />
       </div>
       <div>
@@ -39,15 +44,15 @@ export default function ProductPage() {
         </h1>
         <h2 className="text-2xl">${product.price}</h2>
         <div className="my-5">
-          <p className="uppercase tracking-wide">
+          <div className="uppercase tracking-wide">
             {product.inStock ? (
               <div>
                 <span className="font-bold">✓ </span>in stock
               </div>
             ) : (
-              "not available"
+              <div>not available</div>
             )}
-          </p>
+          </div>
           <p>
             <span className="font-medium text-base">Material: </span>
             {product.material}
@@ -59,7 +64,7 @@ export default function ProductPage() {
           <div className="flex border border-zinc-300 w-fit h-fit rounded-md ">
             <button
               className={`${activeBatton} ${buttonDes}`}
-              onClick={() => setQuality((prevVal) => prevVal - 1)}
+              onClick={minusProduct}
             >
               -
             </button>
@@ -77,12 +82,13 @@ export default function ProductPage() {
           <div>
             <button
               className="flex justify-center items-center mx-auto p-1 uppercase   bg-yellow-300/30   rounded-xl w-4/5 cursor-pointer  shadow-[0_0_10px_2px_rgba(255,180,0,0.5)] whitespace-nowrap hover:bg-yellow-300/50 hover:border-white transition-colors duration-300 active:scale-95 "
+              disabled={!product.inStock}
               onClick={() => {
-                addCartProduct(product.id, quality);
+                product.inStock && addCartProduct(product.id, quality);
                 setQuality(1);
               }}
             >
-              add to cart
+              {product.inStock ? "add to cart" : "out of stock"}
             </button>
           </div>
         </div>
