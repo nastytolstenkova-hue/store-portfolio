@@ -74,7 +74,8 @@ export default function OneOrder({ order }: { order: IOrder }) {
           to={`/account/orderDetails/${order.id}`}
           className="flex my-3 w-[60%] mb-2 p-1 uppercase border border-zinc-300 shadow-[0_0_10px_2px_rgba(255,180,0,0.5)] bg-yellow-500/20 rounded-xl cursor-pointer whitespace-nowrap hover:bg-yellow-500/30  transition-colors duration-300 active:scale-95 "
         >
-          view details
+          <span className="lg:hidden mx-auto">details</span>
+          <span className="hidden lg:inline mx-auto">view details</span>
         </NavLink>
         <button className="flex underline text-sm text-zinc-900 cursor-pointer hover:text-black  transition-colors duration-300 active:scale-95">
           reorder

@@ -90,11 +90,14 @@ export default function ProfileSettings() {
     ? "border-yellow-500 bg-white shadow-sm rounded-full border w-[60%] px-3 transition-all"
     : "border-zinc-300 bg-zinc-100/50 cursor-default rounded-full border w-[60%] px-3 transition-all";
   return (
-    <div>
-      <h2 className="m-2 text-xl">Account Basics</h2>
+    <div className="sm:w-[90%]
+            lg:w-[70%]  
+            xl:w-[60%] xl:text-lg 
+            2xl:w-[50%] ">
+      <h2 className="text-3xl uppercase font-mono flex justify-center bg-amber-300/30  p-2 rounded-2xl border border-amber-500/30 shadow-sm shadow-amber-800/50 mb-2">Account Basics</h2>
       <div className="border border-zinc-400 rounded-md p-2 m-2">
         <label className="flex justify-between my-2">
-          <p className="line-clamp-1 text-nowrap text-sm">User Name</p>
+          <p className="line-clamp-1 text-nowrap text-sm xl:text-base">User Name</p>
           <input
             name="userName"
             disabled={!isEdit}
@@ -106,7 +109,7 @@ export default function ProfileSettings() {
           />
         </label>
         <label className="flex justify-between my-2 ">
-          <p className="line-clamp-1 text-nowrap text-sm">Email Address</p>
+          <p className="line-clamp-1 text-nowrap text-sm xl:text-base">Email Address</p>
           <input
             name="email"
             disabled={!isEdit}
@@ -124,7 +127,7 @@ export default function ProfileSettings() {
       <div className="border border-zinc-400 rounded-md p-2 m-2">
         <h3 className=" text-xl">Contact & Details</h3>
         <label className="flex justify-between my-2">
-          <p className="line-clamp-1 text-nowrap text-sm">Phone Number</p>
+          <p className="line-clamp-1 text-nowrap text-sm xl:text-base">Phone Number</p>
           <input
             name="phone"
             disabled={!isEdit}
@@ -136,7 +139,7 @@ export default function ProfileSettings() {
           />
         </label>
         <label className="flex justify-between my-2">
-          <p className="line-clamp-1 text-nowrap text-sm">Date of Birth</p>
+          <p className="line-clamp-1 text-nowrap text-sm xl:text-base">Date of Birth</p>
           <input
             name="birthDate"
             className={inputDesign}
@@ -148,7 +151,7 @@ export default function ProfileSettings() {
           />
         </label>
         <label className="flex justify-between my-2">
-          <p className="line-clamp-1 text-nowrap text-sm">
+          <p className="line-clamp-1 text-nowrap text-sm xl:text-base">
             Preferred Contact Method
           </p>
           <select
@@ -167,7 +170,7 @@ export default function ProfileSettings() {
       <div className="border border-zinc-400 rounded-md p-2 m-2">
         <h3 className=" text-xl">Password & Security</h3>
         <label className="flex justify-between my-2">
-          <p className="line-clamp-1 text-nowrap text-sm">Current Password</p>
+          <p className="line-clamp-1 text-nowrap text-sm xl:text-base">Current Password</p>
           <input
             disabled={!isEdit}
             className={inputDesign}
@@ -182,7 +185,7 @@ export default function ProfileSettings() {
           />
         </label>
         <label className="flex justify-between my-2">
-          <p className="line-clamp-1 text-nowrap text-sm">New Password</p>
+          <p className="line-clamp-1 text-nowrap text-sm xl:text-base">New Password</p>
           <input
             disabled={!isEdit}
             className={inputDesign}
@@ -197,7 +200,7 @@ export default function ProfileSettings() {
           />
         </label>
         <label className="flex justify-between my-2">
-          <p className="line-clamp-1 text-nowrap text-sm">
+          <p className="line-clamp-1 text-nowrap text-sm xl:text-base">
             Confirm New Password
           </p>
           <input

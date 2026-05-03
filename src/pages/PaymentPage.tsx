@@ -106,8 +106,8 @@ export default function PaymentPage() {
   };
 
   return (
-    <div className="grid grid-cols-2">
-      <div className="">
+    <div className="grid grid-cols-[2fr_1fr] ">
+      <div className="flex flex-col mx-auto w-[90%] sm:w-[80%] lg:w-[70%] xl:w-[50%] xl:text-xl mr-0">
         <ShippingAddress
           setIsShippingAddressValid={setIsUserReady}
           isShippingAddressValid={isUserReady}
@@ -115,7 +115,7 @@ export default function PaymentPage() {
         />
         <PaymentMethodComp isCardValid={setIsCardReady} />
       </div>
-      <div>
+      <div className="flex ml-0 h-fit mx-auto sm:text-base lg:text-lg xl:text-xl">
         <OrderSummPay payFunction={handlePayFunction} />
       </div>
     </div>

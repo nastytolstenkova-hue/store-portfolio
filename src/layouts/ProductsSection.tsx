@@ -6,7 +6,7 @@ export default function ProductsSection() {
 
   return (
     <div className="m-5 ">
-      <ul className="grid grid-cols-4 gap-2">
+      <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
         {productsList.map((product) => (
           <li key={product.id}>
             <OneProduct product={product} />

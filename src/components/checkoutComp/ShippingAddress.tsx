@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import UseUserContext from "../../hooks/UseUserContext";
+
 export interface IPayShippingAddressComp {
   setIsShippingAddressValid: (valid: boolean) => void;
   isShippingAddressValid: boolean;
@@ -22,12 +24,15 @@ export default function ShippingAddress({
   setIsShippingAddressValid,
   getUserInfo,
 }: IPayShippingAddressComp) {
-  const [fullName, setFullName] = useState<string>("");
-  const [street, setStreet] = useState<string>("");
-  const [houseNumber, setHouseNumber] = useState<string>("");
-  const [apartment, setApartment] = useState<string>("");
-  const [city, setCity] = useState<string>("");
-  const [postalCode, setPostalCode] = useState<string>("");
+  const {userAddresses} = UseUserContext();
+  const mainAddress = userAddresses.find((addr)=>addr.mainAddress === true)
+
+  const [fullName, setFullName] = useState<string>(mainAddress ? mainAddress.fullName : '');
+  const [street, setStreet] = useState<string>(mainAddress ? mainAddress.street : '');
+  const [houseNumber, setHouseNumber] = useState<string>(mainAddress ? mainAddress.houseNumber : '');
+  const [apartment, setApartment] = useState<string>(mainAddress ? mainAddress.apartment : '');
+  const [city, setCity] = useState<string>(mainAddress ? mainAddress.city : '');
+  const [postalCode, setPostalCode] = useState<string>(mainAddress ? mainAddress.postalCode : '');
   const [shipMethod, setShipMethod] = useState<string>("");
 
   const format = (str: string) =>

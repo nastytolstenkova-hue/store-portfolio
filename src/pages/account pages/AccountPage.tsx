@@ -17,16 +17,15 @@ export default function AccountPage() {
       : "hover:underline px-2 py-1";
 
   return (
-    <div className="w-full mt-5 cursor-default">
-      <div className="grid grid-cols-[1fr_2fr]">
-        <div className="flex flex-col ml-5 pb-10 border border-zinc-200 px-8 rounded-2xl w-fit shadow-md h-[80vh] sticky top-5 justify-between">
+    <div className="w-full mt-5 cursor-default ">
+      <div className="grid grid-cols-[1fr_2fr] xl:text-xl">
+        <div className="flex flex-col items-center bg-amber-300/30 ml-5 pb-10 border border-zinc-200 px-8 rounded-2xl w-fit shadow-md h-[80vh] sticky top-5 justify-between xl:w-[50%]">
           <div className="flex flex-col justify-center items-center my-3">
             <p>Welcome,</p>
             {currentUser ? (
               <div>
-                {" "}
-                <p>{currentUser.userName}</p>
-                <p>{currentUser.email}</p>
+                <p className="flex mx-auto justify-center ">{currentUser.userName}</p>
+                <p className="flex mx-auto justify-center ">{currentUser.email}</p>
               </div>
             ) : (
               <p>user</p>
