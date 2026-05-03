@@ -9,7 +9,6 @@ The project includes product catalog, cart, wishlist, simulated authentication, 
 - Product page with detailed information
 - Shopping cart with total price calculation
 - Wishlist functionality
-- Simulated user authentication: login and logout
 - Checkout process with validation
 - Simulated authentication flow with login, logout and protected user routes
 - User account:
@@ -38,10 +37,10 @@ Clone the repository:
 git clone https://github.com/nastytolstenkova-hue/store-portfolio.git
 cd store-portfolio
 
-Install dependencies:
+## Install dependencies:
 npm install
 
-Run the project:
+## Run the project:
 npm run dev
 
 ## Responsive Design
@@ -53,39 +52,45 @@ The project is adapted for:
 
 ## Future Improvements
 
-- Add real authentication
+- Add real backend authentication
 - Add backend integration
 - Add tests
 - Improve product filtering
+
+## Project Status
+
+The project is completed as a portfolio project and may be extended with backend integration, real authentication and tests.
 
 ## Author
 
 Created by Anastasia.
 
 
-📸 Screenshots
+## Screenshots
 
-## Main Page
+
+
+### Main Page
 
 <img width="1078" height="1131" alt="image" src="https://github.com/user-attachments/assets/13152475-b713-4316-8c70-8c51684a2de6" />
 
-## Personal information page
+### Personal information page
 
 <img width="1069" height="1110" alt="image" src="https://github.com/user-attachments/assets/bdad3fae-2204-495a-a6da-790f28da0507" />
 
-## User's orders page
+### User's orders page
 
 <img width="1077" height="1078" alt="image" src="https://github.com/user-attachments/assets/430beb87-36b3-47ce-8dcc-ad0ed2828e84" />
 
-## Wishlist page
+### Wishlist page
 
 <img width="1081" height="1083" alt="image" src="https://github.com/user-attachments/assets/96f746ba-7549-470a-a6ae-ed5e3feb8355" />
 
-## Addresses page
+### Addresses page
 
 <img width="1071" height="1062" alt="image" src="https://github.com/user-attachments/assets/0cabedec-5dfd-4e3c-b786-4db9a3a2ca4e" />
 
-## Product page
+### Product page
 
 <img width="1082" height="826" alt="image" src="https://github.com/user-attachments/assets/612dbc45-27b3-474e-8f2a-8e8b66303050" />
 
