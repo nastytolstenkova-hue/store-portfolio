@@ -8,8 +8,9 @@ Modern e-commerce web application built with React, TypeScript, and Vite.
 - Product page with detailed information
 - Shopping cart with total price calculation
 - Wishlist functionality
+- Simulated user authentication: login and logout
 - Checkout process with validation
-- Simulated payment flow
+- Simulated authentication flow with login, logout and protected user routes
 - User account:
   - Saved addresses
   - Order history
@@ -42,22 +43,24 @@ npm install
 Run the project:
 npm run dev
 
-Responsive Design
+## Responsive Design
 
-The application is optimized for:
-Desktop
-Tablet
-Mobile
+The project is adapted for:
+- mobile screens
+- tablets
+- desktop screens
 
-Future Improvements
-Authentication (login / logout)
-Backend integration (API)
-Stripe payment integration
-Better UI/UX polish
-Performance optimization
+## Future Improvements
 
-Author
-Nastya
+- Add real authentication
+- Add backend integration
+- Add tests
+- Improve product filtering
+
+## Author
+
+Created by Nastya.
+
 
 📸 Screenshots
 <img width="1078" height="1131" alt="image" src="https://github.com/user-attachments/assets/13152475-b713-4316-8c70-8c51684a2de6" />
