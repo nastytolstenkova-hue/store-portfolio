@@ -1,6 +1,7 @@
 # Store Portfolio Project
 
-Modern e-commerce web application built with React, TypeScript, and Vite.
+A responsive e-commerce portfolio application built with React, TypeScript and Tailwind CSS.  
+The project includes product catalog, cart, wishlist, simulated authentication, protected account pages and checkout flow.
 
 ## Features
 
@@ -9,7 +10,7 @@ Modern e-commerce web application built with React, TypeScript, and Vite.
 - Shopping cart with total price calculation
 - Wishlist functionality
 - Checkout process with validation
-- Simulated payment flow
+- Simulated authentication flow with login, logout and protected user routes
 - User account:
   - Saved addresses
   - Order history
@@ -36,45 +37,67 @@ Clone the repository:
 git clone https://github.com/nastytolstenkova-hue/store-portfolio.git
 cd store-portfolio
 
-Install dependencies:
+## Install dependencies:
 npm install
 
-Run the project:
+## Run the project:
 npm run dev
 
-Responsive Design
+## Responsive Design
 
-The application is optimized for:
-Desktop
-Tablet
-Mobile
+The project is adapted for:
+- mobile screens
+- tablets
+- desktop screens
 
-Future Improvements
-Authentication (login / logout)
-Backend integration (API)
-Stripe payment integration
-Better UI/UX polish
-Performance optimization
+## Future Improvements
 
-Author
-Nastya
+- Add real backend authentication
+- Add backend integration
+- Add tests
+- Improve product filtering
 
-📸 Screenshots
+## Project Status
+
+The project is completed as a portfolio project and may be extended with backend integration, real authentication and tests.
+
+## Author
+
+Created by Anastasia.
+
+
+## Screenshots
+
+
+
+### Main Page
+
 <img width="1078" height="1131" alt="image" src="https://github.com/user-attachments/assets/13152475-b713-4316-8c70-8c51684a2de6" />
-<img width="1070" height="667" alt="image" src="https://github.com/user-attachments/assets/fc7d6ae6-4892-49dc-a5a3-c87565544c92" />
-<img width="1088" height="963" alt="image" src="https://github.com/user-attachments/assets/c37770d2-1326-42ef-b2d3-9f92b1c2e7c8" />
-<img width="1076" height="1079" alt="image" src="https://github.com/user-attachments/assets/f3385041-c433-497c-9e3b-a23d0cfc40fb" />
-<img width="1080" height="929" alt="image" src="https://github.com/user-attachments/assets/5b1ade03-9ed7-40c6-b611-c5bd720d49eb" />
 
+### Personal information page
 
+<img width="1069" height="1110" alt="image" src="https://github.com/user-attachments/assets/bdad3fae-2204-495a-a6da-790f28da0507" />
 
+### User's orders page
 
-### Product Page
-<img width="1098" height="825" alt="image" src="https://github.com/user-attachments/assets/3059a194-51ab-43ac-84fb-4bc1d6342dfc" />
+<img width="1077" height="1078" alt="image" src="https://github.com/user-attachments/assets/430beb87-36b3-47ce-8dcc-ad0ed2828e84" />
+
+### Wishlist page
+
+<img width="1081" height="1083" alt="image" src="https://github.com/user-attachments/assets/96f746ba-7549-470a-a6ae-ed5e3feb8355" />
+
+### Addresses page
+
+<img width="1071" height="1062" alt="image" src="https://github.com/user-attachments/assets/0cabedec-5dfd-4e3c-b786-4db9a3a2ca4e" />
+
+### Product page
+
+<img width="1082" height="826" alt="image" src="https://github.com/user-attachments/assets/612dbc45-27b3-474e-8f2a-8e8b66303050" />
 
 ### Cart
-<img width="1075" height="1090" alt="image" src="https://github.com/user-attachments/assets/aca12d54-eaa0-4034-9ed8-b8ab062e3c88" />
 
+<img width="1076" height="1058" alt="image" src="https://github.com/user-attachments/assets/569b9f2e-b0d0-46a5-9912-4de51f3d7f9f" />
 
 ### Checkout
-<img width="990" height="1029" alt="image" src="https://github.com/user-attachments/assets/dfadd851-6500-4004-a263-93ec5fe9f3fe" />
+
+<img width="1075" height="1099" alt="image" src="https://github.com/user-attachments/assets/907c36ac-e88f-42fe-9eb8-e28cc3745129" />
