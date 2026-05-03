@@ -55,7 +55,7 @@ export default function OneProduct({ product }: { product: IProduct }) {
           text={product.inStock ? "add to cart" : "out of stock"}
           disabled={!product.inStock}
           onClick={() => product.inStock && addCartProduct(product.id)}
-          className="mx-auto w-4/5"
+          className="mx-auto w-4/5 disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100"
         />
 
         <button

@@ -12,7 +12,7 @@ export default function OneOrderDetails() {
   }
 
   return (
-    <div className="bg-amber-200/30 p-3 rounded-md">
+    <div className="bg-amber-200/30 p-3 rounded-md lg:w-[80%] xl:w-[70%]">
       <h2 className="text-xl font-bold mb-4">
         Order Details: {currentOrder.id}
       </h2>

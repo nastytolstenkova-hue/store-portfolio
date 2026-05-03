@@ -23,7 +23,7 @@ export default function ProductPage() {
   );
 
   if (!product) {
-    return <div>Product isn't exist</div>;
+    return <div>This product does not exist.</div>;
   }
 
   const buttonDes = `flex justify-center items-center  p-1 w-7 h-7 bg-zinc-400/30 cursor-pointer `;
@@ -81,7 +81,7 @@ export default function ProductPage() {
           </div>
           <div>
             <button
-              className="flex justify-center items-center mx-auto p-1 uppercase   bg-yellow-300/30   rounded-xl w-4/5 cursor-pointer  shadow-[0_0_10px_2px_rgba(255,180,0,0.5)] whitespace-nowrap hover:bg-yellow-300/50 hover:border-white transition-colors duration-300 active:scale-95 "
+              className="flex justify-center items-center mx-auto p-1 uppercase   bg-yellow-300/30   rounded-xl w-4/5 cursor-pointer  shadow-[0_0_10px_2px_rgba(255,180,0,0.5)] whitespace-nowrap hover:bg-yellow-300/50 hover:border-white transition-colors duration-300 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100"
               disabled={!product.inStock}
               onClick={() => {
                 product.inStock && addCartProduct(product.id, quality);
