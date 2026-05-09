@@ -61,6 +61,15 @@ The project is adapted for:
 
 The project is completed as a portfolio project and may be extended with backend integration, real authentication and tests.
 
+## Live Demo
+
+https://store-portfolio.vercel.app
+
+## Demo account
+
+Email: demo@test.com
+Password: demo123
+
 ## Author
 
 Created by Anastasia.
