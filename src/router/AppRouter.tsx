@@ -17,6 +17,7 @@ import SuccessPayPage from "../pages/SuccessPayPage";
 import PaymentPage from "../pages/PaymentPage";
 import ProtectedRoute from "../pages/account pages/ProtectedRoute";
 import NotFoundPage from "../pages/NotFoundPage";
+import ErrorBoundary from "../pages/ErrorBoundary";
 
 export default function AppRouter() {
   const router = createBrowserRouter([
@@ -54,5 +55,5 @@ export default function AppRouter() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (<ErrorBoundary><RouterProvider router={router} /></ErrorBoundary>);
 }

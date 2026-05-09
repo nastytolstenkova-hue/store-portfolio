@@ -9,6 +9,7 @@ import { UserContextProvider } from "./store/UserContext.tsx";
 import { WishListContextProvider } from "./store/WishListContext.tsx";
 import { AuthContextProvider } from "./store/AuthContext.tsx";
 
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ProductsContextProvider>

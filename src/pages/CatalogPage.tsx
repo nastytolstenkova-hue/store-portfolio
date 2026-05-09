@@ -39,7 +39,7 @@ export default function CatalogPage() {
         </select>
       </div>
       {sortedProducts.length === 0 ? (
-        <p className="text-center mt-10">No matches for your request.</p>
+        <p className="text-center mt-10 text-2xl">No matches for your request.</p>
       ) : (
         <ul className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
           {sortedProducts.map((prod) => (
