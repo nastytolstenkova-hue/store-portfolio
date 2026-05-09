@@ -16,6 +16,7 @@ import OneOrderDetails from "../components/orderHistory/OneOrderDetails";
 import SuccessPayPage from "../pages/SuccessPayPage";
 import PaymentPage from "../pages/PaymentPage";
 import ProtectedRoute from "../pages/account pages/ProtectedRoute";
+import NotFoundPage from "../pages/NotFoundPage";
 
 export default function AppRouter() {
   const router = createBrowserRouter([
@@ -30,8 +31,9 @@ export default function AppRouter() {
         { path: "/catalog/:id", element: <ProductPage /> },
         { path: "/payment", element: <PaymentPage /> },
         { path: "/success", element: <SuccessPayPage /> },
+        { path: "*", element: <NotFoundPage /> },
         {
-          element: <ProtectedRoute/>,
+          element: <ProtectedRoute />,
           children: [
             {
               path: "/account",

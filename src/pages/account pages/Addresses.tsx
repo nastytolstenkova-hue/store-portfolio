@@ -5,6 +5,8 @@ import Address from "../../components/Address";
 import Button from "../../components/ui/Button";
 import FormAddNewAddress from "../../components/FormAddNewAddress";
 
+
+
 export default function Addresses() {
   const [isAddAddressForm, setIsAddAddressForm] = useState<boolean>(false);
   const [isEditAddress, setIsEditAddress] = useState<boolean>(false);
@@ -40,6 +42,7 @@ export default function Addresses() {
             isEdit={isEditAddress}
           />
         )}
+       
       </div>
     
   );
