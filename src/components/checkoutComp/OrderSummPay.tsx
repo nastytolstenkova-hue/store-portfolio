@@ -5,9 +5,15 @@ import Button from "../ui/Button";
 
 export interface IOrderSummPay {
   payFunction: () => void;
+  submitError: string | null;
+  isSubmitting: boolean;
 }
 
-export default function OrderSummPay({ payFunction }: IOrderSummPay) {
+export default function OrderSummPay({
+  payFunction,
+  isSubmitting,
+  submitError,
+}: IOrderSummPay) {
   const { cartProducts, totalPrice } = UseCartContext();
   return (
     <div className="flex flex-col bg-amber-200/40 w-full p-3 rounded-md border border-zinc-500/40">
@@ -32,11 +38,15 @@ export default function OrderSummPay({ payFunction }: IOrderSummPay) {
         <p>Total</p>
         <p>${totalPrice}</p>
       </div>
+      {submitError && (
+        <p className="text-red-500 text-sm mb-2">{submitError}</p>
+      )}
       <Button
-        text="pay"
+        text={isSubmitting ? "Processing..." : "Pay"}
         className="w-4/5"
         type="button"
         onClick={payFunction}
+        disabled={isSubmitting}
       />
       <NavLink
         to="/catalog"

@@ -10,12 +10,11 @@ import type { IOrder } from "../store/OrderContext";
 import { useNavigate } from "react-router-dom";
 import UseAuthContext from "../hooks/UseAuthContext";
 
-
 export default function PaymentPage() {
   const [isCardReady, setIsCardReady] = useState<boolean>(false);
   const [isUserReady, setIsUserReady] = useState<boolean>(false);
   const [address, setAddress] = useState<IUserAddress>({
-    id: '',
+    id: "",
     fullName: "",
     street: "",
     houseNumber: "",
@@ -23,18 +22,21 @@ export default function PaymentPage() {
     city: "",
     postalCode: "",
     shipMethod: "",
-    mainAddress: false
+    mainAddress: false,
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const {currentUser} = UseAuthContext();
+  const { currentUser } = UseAuthContext();
 
   const navigate = useNavigate();
 
   const { setUserAddresses } = UseUserContext();
-  const { setCartProducts, cartProducts, totalPrice, summProd } = UseCartContext();
+  const { setCartProducts, cartProducts, totalPrice, summProd } =
+    UseCartContext();
   const { sendOrder, setUserOrders } = UseOrderContext();
 
-  const canOrder =   isCardReady && isUserReady;
+  const canOrder = isCardReady && isUserReady;
 
   const getInfo = (
     fullName: string,
@@ -56,58 +58,73 @@ export default function PaymentPage() {
         city: city,
         postalCode: postalCode,
         shipMethod: shipMethod,
-        mainAddress: false
-        
-      });
-    }
-  };
-
-  const handlePayFunction = () => {
-    if (summProd === 0){
-      return
-    }
-    if (canOrder) {
-      setUserAddresses((prevVal) => [address, ...prevVal]);
-      setAddress({
-        id: '',
-        fullName: "",
-        street: "",
-        houseNumber: "",
-        apartment: "",
-        city: "",
-        postalCode: "",
-        shipMethod: "",
         mainAddress: false,
       });
-
-      const orderId = `NL-${new Date().getFullYear()}-${Math.floor(Math.random() * 1000)
-          .toString()
-          .padStart(3, "0")}`
-
-      const newOrder: IOrder = {
-        id: orderId,
-        userId: currentUser ? currentUser.id : String(Date.now()),
-        date: new Date().toISOString().split("T")[0],
-        status: "Processing",
-        totalPrice: totalPrice,
-        items: cartProducts.map((prod) => ({
-          id: prod.id,
-          name: prod.name,
-          image: prod.image,
-          price: prod.price,
-          quantity: prod.count,
-        })),
-      };
-
-      sendOrder(newOrder);
-      setUserOrders((prevVal)=>[ newOrder, ...prevVal])
-      setCartProducts([]);
-      setIsCardReady(false);
-      setIsUserReady(false);
-      navigate('/success', {state: {orderId : orderId}})
     }
   };
 
+  const handlePayFunction = async () => {
+    if (summProd === 0) return;
+
+    if (canOrder) {
+      setSubmitError(null);
+      setIsSubmitting(true);
+
+      try {
+        const orderId = `NL-${new Date().getFullYear()}-${Math.floor(
+          Math.random() * 1000,
+        )
+          .toString()
+          .padStart(3, "0")}`;
+
+        const newOrder: IOrder = {
+          id: orderId,
+          userId: currentUser ? currentUser.id : String(Date.now()),
+          date: new Date().toISOString().split("T")[0],
+          status: "Processing",
+          totalPrice: totalPrice,
+          items: cartProducts.map((prod) => ({
+            id: prod.id,
+            name: prod.name,
+            image: prod.image,
+            price: prod.price,
+            quantity: prod.count,
+          })),
+        };
+        await sendOrder(newOrder);
+
+        alert("Order sent successfully!");
+
+        setUserAddresses((prevVal) => [address, ...prevVal]);
+        setUserOrders((prevVal) => [newOrder, ...prevVal]);
+        setCartProducts([]);
+
+        setAddress({
+          id: "",
+          fullName: "",
+          street: "",
+          houseNumber: "",
+          apartment: "",
+          city: "",
+          postalCode: "",
+          shipMethod: "",
+          mainAddress: false,
+        });
+        setIsCardReady(false);
+        setIsUserReady(false);
+
+        navigate("/success", { state: { orderId: orderId } });
+      } catch (err: any) {
+        console.error("Send order error:", err);
+        setSubmitError(
+          err.message ||
+            "An error occurred while sending. Please try again later.",
+        );
+      } finally {
+        setIsSubmitting(false);
+      }
+    }
+  };
   return (
     <div className="grid grid-cols-1 sm:grid-cols-[2fr_1fr] gap-3">
       <div className="flex flex-col mx-auto w-[90%] sm:w-[80%] sm:mr-0 lg:w-[70%] xl:w-[50%] xl:text-xl ">
@@ -119,7 +136,11 @@ export default function PaymentPage() {
         <PaymentMethodComp isCardValid={setIsCardReady} />
       </div>
       <div className="flex justify-center sm:ml-0 h-fit mx-auto sm:text-base lg:text-lg xl:text-xl w-[90%] ">
-        <OrderSummPay payFunction={handlePayFunction} />
+        <OrderSummPay
+          payFunction={handlePayFunction}
+          isSubmitting={isSubmitting}
+          submitError={submitError}
+        />
       </div>
     </div>
   );
